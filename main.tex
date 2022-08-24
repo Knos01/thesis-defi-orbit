@@ -45,7 +45,7 @@
 	\begin{center}
             {\LARGE{
                     \setstretch{1.2}
-                    \textbf{Strategie di ottimizzazione ed automatizzazione di liquidità nella finanza decentralizzata}
+                    \textbf{Strategie di automatizzazione di liquidità nella finanza decentralizzata}
                     \par
             }}
         \end{center}
@@ -133,15 +133,62 @@ L'ultima caratteristica della DeFi che ritengo importante citare è ciò che pi�
 In qualsiasi momento un utente può trasferire i propri assets digitali, senza dover chiedere il permesso a soggetti di terze parti, evitando costose commissioni e con un attesa che va dai pochi secondi ai pochi minuti. 
 
 
-\chapter{Servizi forniti nel settore DeFi}
+\chapter{Uniswap, piattaforma di Liquidity Providing}
 
-Avendo ora in mente cosa è la DeFi, quali sono le sue caratteristiche e i principali vantaggi, è bene approfondire quali sono i prodotti "dApps" che hanno influenzato il lavoro svolto durante il mio Project Work.
+Avendo approfondito cosa è la DeFi, quali sono le sue caratteristiche e i principali vantaggi, è bene concentrarsi su quali sono i prodotti "dApps" che hanno messo le basi per il lavoro svolto durante il mio Project Work.
 
 \section{Uniswap}
 
-Innanzitutto, onde evitare facili fraintendimenti, è bene distinguere la piattaforma Uniswap (\hyperlink{Uniswap}{https://app.uniswap.org/}), ossia ciò con cui l'utente interagisce direttamente, dall'omonimo protocollo.
+Innanzitutto, è bene distinguere la piattaforma Uniswap\cite{uniswap} dall'omonimo protocollo.
+\\La dApp di Uniswap (conosciuta come Uniswap Interface) è una piattaforma che permette agli utenti l'interazione con il protocollo Uniswap.
+\\\\Quest'ultimo è bensì una suite di Smart Contracts, per definizione persistenti e non aggiornabili, che insieme costruiscono un Automated Market Maker (da ora AMM)\cite{amm}.
 
-\subsection{Protocollo Uniswap}
+\section{Scambi nei mercati tradizionali}
+
+La maggior parte dei mercati tradizionali ad accesso pubblico utilizza ciò che viene definito \textit{Order Book}\cite{order_book}, ossia un elenco degli ordini di acquisto e vendita attualmente aperti per un asset, organizzati per prezzo.
+\\Sostanzialmente, un \textit{sistema di corrispondenza}\cite{matching} si occupa di abbinare gli ordini di acquisto con quelli di vendita, usando l'order book per eseguire le operazioni tra i partecipanti dello scambio.
+
+
+\subsection{Automated Market Maker}
+
+La rivoluzione introdotta dalla blockchain sta nella possibilità di creare nuovi tipi di scambi che abbinano algoritmicamente ordini di acquisto e vendita utilizzando gli smart contracts.
+\\Tali scambi vengono detti \textit{Scambi Decentralizzati (DEX)}.
+\\\\Un AMM è un protocollo DEX che si basa su un algoritmo di valutazione per prezzare gli asset mediante una formula matematica.
+\\Il citato order book viene rimpiazzato con una pool di liquidità\cite{liquidity_pool}, contenente due asset, entrambi valuti l'uno rispetto all'altro.
+\\Quando un asset viene scambiato per un altro, i prezzi relativi dei due asset cambiano, e viene determinato un nuovo tasso di mercato per entrambi.
+In questo modo acquirenti e venditori interagiscono direttamente con la pool (e di conseguenza gli smart contracts), senza dover interagire tra di loro.
+
+\subsection{Esempio pratico di AMM}
+
+Un esempio pratico che mi ha aiutato a comprendere il funzionamento degli AMM è quello dei contadini di mele e patate.
+Immaginiamo di essere un contadino e di coltivare solo patate, senza la possibilità di mangiare nient'altro.\\ Un giorno ci viene proposto di effettuare degli scambi con un venditore di mele attraverso un messaggero, il quale decide di custodire mele e patate in un contenitore magico, in modo tale che rimangano a disposizione senza marcire (e dunque perdere di valore).
+\\\\La regola fondamentale per questo scambio è che il contenitore dovrà sempre contenere la stessa quantità di mele e patate.
+Tale regola è in realtà la formula alla base dell'AMM di Uniswap, conosciuta come \textbf{Constant Product Formula}: 
+
+\[ x * y = k \]
+dove x corrisponde al numero di mele e y al numero di patate nel contenitore.
+\\Inizialmente il contenitore sarà perfettamente bilanciato, per esempio con 500 mele e 500 patate, entrambe prezzate ad €1 per un valore totale di €250.000.
+\\\\Tuttavia, quando un contandino vorrà mettere a disposizione le sue patate nel contenitore, potrebbe ricevere in cambio meno mele rispetto alle patate inviate.
+Questo perché il prezzo della mela potrebbe aumentare, e dunque per bilanciare il contenitore il prezzo delle patate dovrà di conseguenza diminuire.
+\\Allo stesso modo, se un contandino volesse mettere a disposizione le proprie mele, riceverà più patate di quelle che avrebbe ricevuto inizialmente, considerato l'aumento del prezzo della mela rispetto alle patate.
+\\\\Nella realtà dei fatti, questo contenitore magico è conosciuto come \textit{pool di liquidità}.
+
+\section{Pool di liquidità}
+
+\section{Protocollo Uniswap v3}
+
+\subsection{Liquidità concentrata}
+
+\subsection{Range Orders}
+
+\subsection{Liquidity Minting}
+
+
+
+
+
+
+
 
 
 
