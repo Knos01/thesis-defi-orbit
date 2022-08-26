@@ -54,9 +54,6 @@
 
         \noindent
         {\large \textbf{Relatore:} Prof. Alberto Leporati } \\
-
-        \noindent
-        {\large \textbf{Correlatore:} Per ora nessuno}
         
         \vspace{15mm}
 
@@ -149,7 +146,7 @@ La maggior parte dei mercati tradizionali ad accesso pubblico utilizza ciò che 
 \\Sostanzialmente, un \textit{sistema di corrispondenza}\cite{matching} si occupa di abbinare gli ordini di acquisto con quelli di vendita, usando l'order book per eseguire le operazioni tra i partecipanti dello scambio.
 
 
-\subsection{Automated Market Maker}
+\section{Automated Market Maker}
 
 La rivoluzione introdotta dalla blockchain sta nella possibilità di creare nuovi tipi di scambi che abbinano algoritmicamente ordini di acquisto e vendita utilizzando gli smart contracts.
 \\Tali scambi vengono detti \textit{Scambi Decentralizzati (DEX)}.
@@ -168,23 +165,61 @@ Tale regola è in realtà la formula alla base dell'AMM di Uniswap, conosciuta c
 \[ x * y = k \]
 dove x corrisponde al numero di mele e y al numero di patate nel contenitore.
 \\Inizialmente il contenitore sarà perfettamente bilanciato, per esempio con 500 mele e 500 patate, entrambe prezzate ad €1 per un valore totale di €250.000.
-\\\\Tuttavia, quando un contandino vorrà mettere a disposizione le sue patate nel contenitore, potrebbe ricevere in cambio meno mele rispetto alle patate inviate.
+\\\\Tuttavia, quando un contadino vorrà mettere a disposizione le sue patate nel contenitore, potrebbe ricevere in cambio meno mele rispetto alle patate inviate.
 Questo perché il prezzo della mela potrebbe aumentare, e dunque per bilanciare il contenitore il prezzo delle patate dovrà di conseguenza diminuire.
-\\Allo stesso modo, se un contandino volesse mettere a disposizione le proprie mele, riceverà più patate di quelle che avrebbe ricevuto inizialmente, considerato l'aumento del prezzo della mela rispetto alle patate.
+\\Allo stesso modo, se un contadino volesse mettere a disposizione le proprie mele, riceverà più patate di quelle che avrebbe ricevuto inizialmente, considerato l'aumento del prezzo della mela rispetto alle patate.
 \\\\Nella realtà dei fatti, questo contenitore magico è conosciuto come \textit{pool di liquidità}.
 
 \section{Pool di liquidità}
 
+È possibile vedere una pool di liquidità come uno spazio in cui gli utenti (trader) possono mettere a disposizione la propria liquidità sotto forma di cripto valute (token ERC-20\cite{erc_20}); tali utenti vengono definiti fornitori di liquidità (\textit{liquidity providers, da ora LP}).
+\\\\Come ricompensa per la liquidità fornita, gli \textbf{LP} ricevono commissioni sulle operazioni che avvengono nella pool a cui partecipano. 
+Tali commissioni si applicano sulle singole transazioni effettuate con la liquidità fornita da un LP, e possono variare di percentuale dal 0.01\%\ fino all'1\%\.\\\\Nel caso di Uniswap, gli LP depositano un valore equivalente di due token – per esempio, 50\% ETH e 50\% USDC nella pool ETH/USDC.
+
+
 \section{Protocollo Uniswap v3}
 
+Uniswap v3 è l'ultima versione del protocollo rilasciata da Uniswap nel maggio 2021.\\ Tale protocollo definisce le funzionalità della suite di smart contracts con cui gli utenti interagiscono, introducendo importanti novità rispetto al suo predecessore, v2.
+
+\subsection{Posizioni}
+
+Utilizzando l'interfaccia Uniswap, gli utenti possono connettere il loro personale wallet per mettere a disposizione un certo ammontare di liquidità all'interno di una pool.
+Tale liquidità, come spiegato in precedenza, dovrà mantenere un'equa proporzione tra i due asset messi a disposizione: tale operazione viene definita come \textit{"apertura di una \textbf{posizione}"} (o in inglese, position minting).
+\\\\Su Uniswap v3, le posizioni vengono rappresentate medianti NFT (ERC-721\cite{erc_721}), i quali certificano un determinato wallet, in questo caso chi effettua il minting, come proprietario della posizione.
+
+\subsection{Complicazioni di Uniswap v2}
+
+\\\\In precedenza, nella v2 di Uniswap, la liquidità messa a disposizione da un LP veniva distribuita uniformemente in un intervallo di prezzo da 0 a $\infty$.
+In questo modo non vi era alcuna perdita di liquidità, portando però un importante svantaggio: la maggior parte della liquidità non veniva mai utilizzata negli scambi.
+\\\\Provando a considerare una pool contenente una coppia di due stable coins, ossia token il quale prezzo rimane relativamente costante nel tempo, possiamo assumere che la liquidità all'esterno del tipico intervallo di prezzo dei suddetti stable coins non verrebbe mai toccata.
+\\\\Per esempio in Uniswap v2 la coppia DAI/USDC utilizza circa il 0.50\%\ del capitale totale disponibile per gli scambi all'interno del range tra \$\00.99 e \$\11.01\cite{v2_waste}. Il resto della liquidità è distribuito nella restante fascia di prezzo tra 0 e $\infty$ (escluso il range sopra citato), rendendo quel capitale inutilizzabile (e dunque, non consentendo agli LP di guadagnare commissioni). 
+
 \subsection{Liquidità concentrata}
+\\\\Ciò che rende Uniswap v3 un protocollo davvero valido è l'idea della \textit{Liquidità Concentrata}\cite{concentrated_liquidity}. Tale liquidità viene distribuita in un intervallo di prezzo personalizzabile, a scelta dell'utente.
+\\\\Riprendendo l'esempio sopra citato, un trader potrebbe decidere di investire nella pool DAI/USDC, scegliendo come range il più proficuo, ossia quello compreso tra \$\00.99 e \$\11.01.
+In tal modo, la liquidità concentrata garantirà un guadagno superiori di commissioni (da ora fees) con il capitale da loro messo a disposizione.
 
-\subsection{Range Orders}
+\subsection{Tick di prezzo}
 
-\subsection{Liquidity Minting}
+Per rendere la liquidità concentrata funzionale, lo spazio continuo del prezzo è stato partizionato in \textbf{tick}.
+\\\\I tick sono i limiti di aree discrete nello spazio del prezzo. Tali limiti sono posizionati in modo tale che il diminuire o aumentare di 1 tick rappresenti l'aumento o la diminuzione percentuale del 0.01\%\ del prezzo in ogni punto dello spazio.
+\\Dunque quando una posizione viene creata, un LP non può scegliere qualsiasi valore per il range di prezzo: è necessario che il limite inferiore (\textbf{lower tick}) e il limite superiore (\textbf{upper tick}) corrispondano a dei tick di prezzo validi.
 
+\subsection{Swap e Fees}
 
+Il modo più utilizzato per interagire con Uniswap v3 è tramite gli scambi (da ora \textbf{swap}).
+Uno swap è relativamente semplice: un utente seleziona un token ERC-20 del quale è proprietario e un token che vorrebbe scambiare per esso. Uniswap venderà il token attualmente in possesso dell'utente, ricevendo proporzionalmente una quantità del token desiderato, sottraendo una \textbf{swap fee}, ossia quella percentuale riconosciuta ai LPs per aver messo a disposizione la loro liquidità con la quale è avvenuto lo scambio.
+\\\\Tuttavia, la transazione potrebbe richiedere alcuni minuti, a seconda della rete su cui avviene, rilevando un fenomeno conosciuto come \textbf{}{slippage}.
+\\Lo slippage è l'alterazione di prezzo di un token che avviene mentre la transazione è in attesa di essere completata. Tale alterazione ha una soglia di tolleranza dell'\%\11: superata tale soglia l'operazione viene rifiutata e lo swap annullato, onde evitare grosse perdite per l'utente.
 
+\section{Complicazioni di Uniswap v3}
+
+Se il prezzo di un token si muove verso una direzione (di discesa o di salita), il proprietario della posizione si ritroverà con un ammontare superiore di uno dei due token rispetto all'altro, in quanto il prezzo dell'uno sull'altro cambierà, fino a quando l'intera liquidità sarà relativa a solo uno dei due asset.
+\\\\Per esempio, se in una pool ETH/USDC il prezzo di ETH dovesse diminuire, la percentuale di liquidità relativa a ETH aumenterà, per bilanciare il valore immesso all'interno della posizione stessa.
+Allo stesso modo, se ETH dovesse aumentare di valore, la percentuale di USDC aumenterà a sua volta.
+\\\\Con l'aumentare o il diminuire del prezzo di un asset nella pool, tale prezzo potrebbe uscire dall'intervallo che il LP ha impostato per una certa posizione. Nel momento in cui una posizione si trova fuori dall'intervallo scelto (Out Of Range position) la liquidità diventa inattiva (\textit{idle liquidity}) e l'utente proprietario di tale liquidità non guadagnerà più fees.
+\\Tuttavia, nel momento in cui il valore del primo token sul secondo dovesse tornare nell'intervallo di prezzo iniziale, il LP tornerebbe a guadagnare fee.
+\\\\È proprio dal problema della liquidità inattiva che nasce Orbit DeFi, il prodotto sviluppato durante il mio project work.
 
 
 
