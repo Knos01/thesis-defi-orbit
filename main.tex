@@ -158,21 +158,21 @@ In questo modo acquirenti e venditori interagiscono direttamente con la pool (e 
 \subsection{Esempio pratico di AMM}
 
 Un esempio pratico che mi ha aiutato a comprendere il funzionamento degli AMM è quello dei contadini di mele e patate.
-Immaginiamo di essere un contadino e di coltivare solo patate, senza la possibilità di mangiare nient'altro.\\ Un giorno ci viene proposto di effettuare degli scambi con un venditore di mele attraverso un messaggero, il quale decide di custodire mele e patate in un contenitore magico, in modo tale che rimangano a disposizione senza marcire (e dunque perdere di valore).
-\\\\La regola fondamentale per questo scambio è che il contenitore dovrà sempre contenere la stessa quantità di mele e patate.
-Tale regola è in realtà la formula alla base dell'AMM di Uniswap, conosciuta come \textbf{Constant Product Formula}: 
+\\Immaginiamo di essere un contadino e di avere solo patate, senza la possibilità di coltivare, e di conseguenza mangiare, nient'altro.\\ Un giorno ci viene proposto di effettuare degli scambi con un venditore di mele attraverso un messaggero, il quale decide di custodire mele e patate in un contenitore magico, in modo tale che rimangano a disposizione senza marcire (e dunque perdere di valore).
+\\\\La regola fondamentale per questo scambio è una sola: \textit{il contenitore magico dovrà sempre contenere lo stesso valore di mele e patate.}
+\\Tale regola è in realtà la formula alla base dell'AMM di Uniswap, conosciuta come \textbf{Constant Product Formula}: 
 
 \[ x * y = k \]
 \\dove x corrisponde al numero di mele e y al numero di patate nel contenitore.
 \\Inizialmente il contenitore sarà perfettamente bilanciato, per esempio con 500 mele e 500 patate, entrambe prezzate ad €1 per un valore totale di €250.000.
-\\\\Tuttavia, quando un contadino vorrà mettere a disposizione le sue patate nel contenitore, potrebbe ricevere in cambio meno mele rispetto alle patate inviate.
+\\\\Tuttavia, se un contadino volesse scambiare le sue patate grazie al contenitore, potrebbe ricevere in cambio meno mele rispetto alle patate inviate.
 Questo perché il prezzo della mela potrebbe aumentare, e dunque per bilanciare il contenitore il prezzo delle patate dovrà di conseguenza diminuire.
-\\Allo stesso modo, se un contadino volesse mettere a disposizione le proprie mele, riceverà più patate di quelle che avrebbe ricevuto inizialmente, considerato l'aumento del prezzo della mela rispetto alle patate.
+\\Allo stesso modo, se un contadino volesse scambiare le proprie mele, riceverebbe più patate di quelle che avrebbe ricevuto inizialmente, considerato l'aumento del prezzo della mela rispetto alle patate.
 \\\\Nella realtà dei fatti, questo contenitore magico è conosciuto come \textit{pool di liquidità}.
 
 \section{Pool di liquidità}
 
-È possibile vedere una pool di liquidità come uno spazio in cui gli utenti (trader) possono mettere a disposizione la propria liquidità sotto forma di cripto valute (token ERC-20\cite{erc_20}); tali utenti vengono definiti fornitori di liquidità (\textit{liquidity providers, da ora LP}).
+È possibile vedere una pool di liquidità come uno spazio in cui i contandini (trader) possono mettere a disposizione la propria liquidità di mele e patate (cripto valute, nello specifico token ERC-20\cite{erc_20}); tali utenti vengono definiti fornitori di liquidità (\textit{liquidity providers, da ora LP}).
 \\\\Come ricompensa per la liquidità fornita, gli \textbf{LP} ricevono commissioni sulle operazioni che avvengono nella pool a cui partecipano. 
 Tali commissioni si applicano sulle singole transazioni effettuate con la liquidità fornita da un LP, e possono variare di percentuale dal 0.01\%\ fino all'1\%\.\\\\Nel caso di Uniswap, gli LP depositano un valore equivalente di due token; per esempio, 50\% ETH e 50\% USDC nella pool ETH/USDC.
 
@@ -189,7 +189,7 @@ Tale liquidità, come spiegato in precedenza, dovrà mantenere un'equa proporzio
 
 \subsection{Complicazioni di Uniswap v2}
 
-\\\\In precedenza, nella v2 di Uniswap, la liquidità messa a disposizione da un LP veniva distribuita uniformemente in un intervallo di prezzo da 0 a $\infty$.
+\\\\In precedenza, nella v2 di Uniswap, i LP poteva mettere a disposizione i propri asset per scambi \textbf{a qualsiasi prezzo}.
 In questo modo non vi era alcuna perdita di liquidità, portando però un importante svantaggio: la maggior parte della liquidità non veniva mai utilizzata negli scambi.
 \\\\Provando a considerare una pool contenente una coppia di due stable coins, ossia token il quale prezzo rimane relativamente costante nel tempo, possiamo assumere che la liquidità all'esterno del tipico intervallo di prezzo dei suddetti stable coins non verrebbe mai toccata.
 \\\\Per esempio in Uniswap v2 la coppia DAI/USDC utilizza circa il 0.50\%\ del capitale totale disponibile per gli scambi all'interno del range tra \$\00.99 e \$\11.01\cite{v2_waste}. Il resto della liquidità è distribuito nella restante fascia di prezzo tra 0 e $\infty$ (escluso il range sopra citato), rendendo quel capitale inutilizzabile (e dunque, non consentendo agli LP di guadagnare commissioni). 
@@ -214,10 +214,10 @@ Uno swap è relativamente semplice: un utente seleziona un token ERC-20 del qual
 
 \section{Complicazioni di Uniswap v3}
 
-Se il prezzo di un token si muove verso una direzione (di discesa o di salita), il proprietario della posizione si ritroverà con un ammontare superiore di uno dei due token rispetto all'altro, in quanto il prezzo dell'uno sull'altro cambierà, fino a quando l'intera liquidità sarà relativa a solo uno dei due asset.
-\\\\Per esempio, se in una pool ETH/USDC il prezzo di ETH dovesse diminuire, la percentuale di liquidità relativa a ETH aumenterà, per bilanciare il valore immesso all'interno della posizione stessa.
-Allo stesso modo, se ETH dovesse aumentare di valore, la percentuale di USDC aumenterà a sua volta.
-\\\\Con l'aumentare o il diminuire del prezzo di un asset nella pool, tale prezzo potrebbe uscire dall'intervallo che un LP ha impostato per una certa posizione. Nel momento in cui una posizione si trova fuori dall'intervallo scelto (Out Of Range position) la liquidità diventa inattiva (\textit{idle liquidity}) e l'utente proprietario di tale liquidità non guadagnerà più fees.
+Qualora il prezzo di un token dovesse muoversi verso una direzione (di discesa o di salita), il proprietario della posizione si ritroverebbe con un ammontare superiore di uno dei due token rispetto all'altro, in quanto il prezzo dell'uno sull'altro cambierà, fino a quando l'intera liquidità sarà relativa a solo uno dei due asset.
+\\\\Per esempio, se in una pool ETH/USDC il prezzo di ETH dovesse diminuire, la percentuale di liquidità relativa a ETH aumenterebbe, per bilanciare il valore immesso all'interno della posizione stessa.
+Allo stesso modo, se ETH dovesse aumentare di valore, la percentuale di USDC aumenterebbe a sua volta.
+\\\\Con l'aumentare o il diminuire del prezzo di un asset nella pool, tale prezzo potrebbe uscire dall'intervallo che un LP ha impostato per una certa posizione. Nel momento in cui una posizione si dovesse trovare fuori dall'intervallo scelto (\textbf{Out Of Range position}) la liquidità diventerebbe inattiva (\textbf{idle liquidity}) e l'utente proprietario di tale liquidità non guadagnerebbe più fees.
 \\Tuttavia, nel momento in cui il valore del primo token sul secondo dovesse tornare nell'intervallo di prezzo iniziale, il LP tornerebbe a guadagnare fee.
 \\\\È proprio dal problema della liquidità inattiva che nasce \textbf{Orbit DeFi}, il prodotto sviluppato durante il mio project work.
 
@@ -228,6 +228,15 @@ Allo stesso modo, se ETH dovesse aumentare di valore, la percentuale di USDC aum
 
 
 \chapter{Orbit, piattaforma per automatizzare le strategie DeFi}
+
+Ho avuto l'opportunità di svolgere il mio Project Work per Five Elements Labs, azienda specializzata nella produzione di software nel mondo blockchain; in particolare nei settori DeFi e NFT.
+\\Durante tale esperienza, mi sono unito allo sviluppo del loro principale prodotto: \textbf{Orbit}\cite{orbit_website}.
+
+\section{Perché Orbit}
+
+We started Orbit based on two convictions. One is the emergence of low fees environments that allows for faster and better automation. The other is the presence of protocols such as Uniswap v3, which brings capital efficiency and operation complexity to another level. As protocols get more efficient, most of the time, they also become complicated for end-users.
+Orbit first version allows users to automate operations and strategies on Uniswap v3 positions. Without paying any fee, it is possible to gain an additional yield from concentrated liquidity and replicate existing practices in place in so-called “vaults.”
+The following versions will build more trustless automated strategies based on Uniswap and other protocols and chains.
 
 \chapter{Tecnologie utilizzate nello sviluppo di Orbit}
 
