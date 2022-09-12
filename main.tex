@@ -232,12 +232,42 @@ Allo stesso modo, se ETH dovesse aumentare di valore, la percentuale di USDC aum
 Ho avuto l'opportunità di svolgere il mio Project Work per Five Elements Labs, azienda specializzata nella produzione di software nel mondo blockchain; in particolare nei settori DeFi e NFT.
 \\Durante tale esperienza, mi sono unito allo sviluppo del loro principale prodotto: \textbf{Orbit}\cite{orbit_website}.
 
-\section{Perché Orbit}
+\section{Introduzione ad Orbit}
 
-We started Orbit based on two convictions. One is the emergence of low fees environments that allows for faster and better automation. The other is the presence of protocols such as Uniswap v3, which brings capital efficiency and operation complexity to another level. As protocols get more efficient, most of the time, they also become complicated for end-users.
-Orbit first version allows users to automate operations and strategies on Uniswap v3 positions. Without paying any fee, it is possible to gain an additional yield from concentrated liquidity and replicate existing practices in place in so-called “vaults.”
-The following versions will build more trustless automated strategies based on Uniswap and other protocols and chains.
 
+\textbf{Orbit} è una piattaforma di gestione di liquidità nel settore DeFi: ossia un \textbf{layer} che permetta ai propri utenti di automatizzare strategie e di ottimizzare posizioni di liquidità su Uniswap v3.
+\\Può essere interpretato come \textbf{un'estensione} del proprio wallet, in grado di gestire gli assets degli utenti per fornire la possibilità di ottenere un ritorno aggiuntivo dalla liquidità concentrata.
+
+\section{Perché nasce Orbit}
+
+Con il rapido crescere del settore DeFi e del corrispondente ecosistema di protocolli, ognuno con le proprie caratteristiche e logiche, risulta sempre più complesso gestire delle strategie di liquidità al passo con i tempi.
+\\Diverse blockchain con fee a basso costo (come \textbf{Polygon}\cite{polygon}) stanno diventando sempre più popolari, spostando l'attenzione degli sviluppatori e degli utenti verso la possibilità di costruire piattaforme e strumenti veloci ed efficaci.
+\\\\Orbit dunque cavalca quest'onda di innovazione e di creatività, portando la liquidità concentrata verso un nuovo livello, costruendo uno strumento efficiente e facile da utilizzare per professionisti e piccoli investitori.
+
+\subsection{Vantaggi per gli utenti}
+
+Automatizzare le proprie posizioni su Uniswap v3 ha un diretto impatto sui ritorni generati da queste ultime.
+\\Le funzionalità fornite da Orbit permettono agli utenti di creare strategie passive, senza il necessario bisogno di rimanere aggiornati sui protocolli, bensì lasciando alla piattaforma il compito di gestire la propria liquidità.
+\\Inoltre, nella prima versione del protocollo, sarà Orbit ad occuparsi dei costi di gas dovuti alle transazioni.\\
+
+\section{Modelli di gestione di liquidità}
+
+Nello stato attuale della DeFi, vi sono concretamente due modelli ben distinti di gestione di liquidità:  \textbf{Aggregatori}\cite{aggregator} e  \textbf{Smart Vaults}(*aggiungo reference).
+
+\subsection{Aggregatori}
+
+Gli Aggregatori sono delle particolari piattaforme DeFi, le quali permettono ai propri utenti di effettuare transazioni attraverso diverse dApps in un unico posto. Ciò permette di risparmiare tempo e aumentare l'efficienza delle transazioni.
+\\Tuttavia, protocolli come Yearn, Beefy o Idle consentono all'utente l'utilizzo di strategie singole, tipicamente con un modello "\textit{Black Box}", ovvero senza verificarne l'effettivo funzionamento interno.
+
+\subsection{Smarts vaults}
+
+Contrariamente agli Aggregatori, gli Smart Vaults garantiscono un'alta personalizzazione delle strategie scelte direttamente dagli utenti.
+\\Il funzionamento è relativamente semplice: un utente diventa \textit{proprietario} di un particolare Smart Contract, usandolo come account per gestire i propri assets e per connettersi ad altri protocolli per allocazioni automatiche di liquidità: tale Smart Contract è difatti uno Smart Vault.
+\\\\Il modello a Smart Vault è stato poco utilizzato in passato, principalmente a causa delle alte fee dovute per attivare le strategie multiple.
+\\Tuttavia, con l'avvento di blockchain sempre meno costose in termini di gas, è possibile utilizzare gli Smart Vaults per integrare facilmente nuovi protocolli e fornire all'utente la possibilità di avere un totale controllo su di essi.
+\\Per tali ragioni, il modello a Smart Vault è stato scelto per la realizzazion di Orbit.
+
+\section{Differenze di Orbit dai competitor}
 \chapter{Tecnologie utilizzate nello sviluppo di Orbit}
 
 \chapter{Architettura degli Smart Contracts di Orbit}
