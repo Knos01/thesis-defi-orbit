@@ -96,11 +96,11 @@ Il tema centrale di questa tesi di laurea è la \textbf{finanza decentralizzata}
 
 \section{Cos'è la Finanza Decentralizzata}
 
-Il termine \textbf{finanza decentralizzata} viene usato per classificare tutti quei servizi finanziari che avvengono direttamente tra due entità sulla blockchain.
+Il termine \textbf{finanza decentralizzata} viene usato per classificare tutti quei servizi finanziari che avvengono direttamente tra due entità su una blockchain.
 
 \subsection{Differenze tra Finanza Decentralizzata e Tradizionale}
 
-Per comprendere il concetto su cui si basa la finanza decentralizzata (da ora \textit{DeFi}), è bene dare un rapido sguardo alla sua controparte: la finanza tradizionale (o centralizzata).\\\\
+Per comprendere il concetto su cui si basa la finanza decentralizzata (da ora in poi \textit{DeFi}), è bene dare un rapido sguardo alla sua controparte: la finanza tradizionale (o centralizzata).\\\\
 Nella finanza centralizzata, ogni singola operazione finanziaria tra due persone (bonifici, prestiti, scambio di risorse, mutui) richiede l'interazione con soggetti di terze parti (tipicamente banche o altri enti).\\
 Ciò incrementa le già prolisse tempistiche burocratiche, oltre ad aggiungere i costi dovuti al servizio fornito dagli enti che permettono l'operazione.
 \\\\Invece, la finanza decentralizzata permette l'interazione tra due soggetti senza l'intermediazione di un sistema centralizzato, bensì mediante un applicativo software costruito sopra la tecnologia blockchain, rendendo le operazioni rapide, pubbliche e sicure.
@@ -109,12 +109,12 @@ Ciò incrementa le già prolisse tempistiche burocratiche, oltre ad aggiungere i
 \section{Caratteristiche e vantaggi della DeFi}
 
 \subsection{Applicazioni decentralizzate}
-Gli applicativi software utilizzati in DeFi vengono definitivi \textit{dApps (decentralized applications)}, ovvero particolari prodotti che utilizzano la blockchain di \textbf{Ethereum}\cite{ethereum}, una delle principali criptovalute, nota per la sua flessibilità e accessibilità.\\\\
-Su tale blockchain risiedono dei particolari programmi denominati \textit{Smart Contracts}\cite{smartcontracts}, i quali si occupano di garantire sicurezza, trasparenza e irreversibilità delle operazioni avvenute sulla blockchain Ethereum.\\
+Gli applicativi software utilizzati in DeFi vengono chiamati \textit{dApps (decentralized applications)}, ovvero particolari prodotti che utilizzano la blockchain di \textbf{Ethereum}\cite{ethereum}, una delle principali criptovalute, nota per la sua flessibilità e accessibilità.\\\\
+Su tale blockchain risiedono dei particolari programmi denominati \textit{Smart Contracts}\cite{smartcontracts}, i quali si occupano di garantire sicurezza, trasparenza e irreversibilità delle operazioni avvenute sulla blockchain di Ethereum.\\
 
 \subsection{Accesso alle dApps}
 
-Il concetto di login ideato nel web2, tipicamente caratterizzato dall'inserimento di un'email e una password, viene sorpassato da una nuova autenticazione del \textbf{web3}\cite{web2_web3}: attraverso il proprio \textit{portafoglio digitale} (da ora, wallet \cite{wallet}) è possibile accedere al proprio account e gestire i propri assets digitali, eventualmente mettendoli a disposizione della dApp a cui si è connessi.
+Il concetto di login ideato nel web2, tipicamente caratterizzato dall'inserimento di un'email e una password, viene sorpassato da una nuova autenticazione del \textbf{web3}\cite{web2_web3}: attraverso il proprio \textit{portafoglio digitale} (da ora in poi, wallet \cite{wallet}) è possibile accedere al proprio account e gestire i propri assets digitali, eventualmente mettendoli a disposizione della dApp a cui si è connessi.
 \\\\I wallet presentano il vantaggio di non dover fornire nomi, indirizzi fisici, email o altre informazioni personali, garantendo la riservatezza dei propri dati; basta creare un wallet per avere immediato accesso alle piattaforme, senza registrazioni.
 
 
@@ -127,7 +127,7 @@ Ogni operazione nella DeFi viene detta \textbf{transazione}. Una transazione è 
 \subsection{Flessibilità}
 
 L'ultima caratteristica della DeFi che ritengo importante citare è ciò che più la contraddistingue dalla finanza tradizionale: la sua flessibilità.\\
-In qualsiasi momento un utente può trasferire i propri assets digitali, senza dover chiedere il permesso a soggetti di terze parti, evitando costose commissioni e con un attesa che va dai pochi secondi ai pochi minuti. 
+In qualsiasi momento un utente può trasferire i propri assets digitali, senza dover chiedere il permesso a soggetti di terze parti, evitando costose commissioni e con un'attesa che va da pochi secondi a pochi minuti. 
 
 
 \chapter{Uniswap, piattaforma di Liquidity Providing}
@@ -138,7 +138,7 @@ Avendo approfondito cosa è la DeFi, quali sono le sue caratteristiche e i princ
 
 Innanzitutto, è bene distinguere la piattaforma Uniswap\cite{uniswap} dall'omonimo protocollo.
 \\La dApp di Uniswap (conosciuta come Uniswap Interface) è una piattaforma che permette agli utenti l'interazione con il protocollo Uniswap.
-\\\\Quest'ultimo è bensì una suite di Smart Contracts, per definizione persistenti e non aggiornabili, che insieme costruiscono un \textbf{Automated Market Maker} (da ora AMM)\cite{amm}.
+\\\\Quest'ultimo è una suite di Smart Contracts, per definizione persistenti e non aggiornabili, che insieme formano un \textbf{Automated Market Maker} (da ora in poi AMM)\cite{amm}.
 
 \section{Scambi nei mercati tradizionali}
 
@@ -163,8 +163,8 @@ Un esempio pratico che mi ha aiutato a comprendere il funzionamento degli AMM è
 \\Tale regola è in realtà la formula alla base dell'AMM di Uniswap, conosciuta come \textbf{Constant Product Formula}: 
 
 \[ x * y = k \]
-\\dove x corrisponde al numero di mele e y al numero di patate nel contenitore.
-\\Inizialmente il contenitore sarà perfettamente bilanciato, per esempio con 500 mele e 500 patate, entrambe prezzate ad €1 per un valore totale di €250.000.
+\\dove $x$ corrisponde al numero di mele e $y$ al numero di patate nel contenitore.
+\\Inizialmente il contenitore sarà perfettamente bilanciato, per esempio con 500 mele e 500 patate, entrambe prezzate ad €1 per un valore totale di €1.000.
 \\\\Tuttavia, se un contadino volesse scambiare le sue patate grazie al contenitore, potrebbe ricevere in cambio meno mele rispetto alle patate inviate.
 Questo perché il prezzo della mela potrebbe aumentare, e dunque per bilanciare il contenitore il prezzo delle patate dovrà di conseguenza diminuire.
 \\Allo stesso modo, se un contadino volesse scambiare le proprie mele, riceverebbe più patate di quelle che avrebbe ricevuto inizialmente, considerato l'aumento del prezzo della mela rispetto alle patate.
@@ -172,7 +172,7 @@ Questo perché il prezzo della mela potrebbe aumentare, e dunque per bilanciare 
 
 \section{Pool di liquidità}
 
-È possibile vedere una pool di liquidità come uno spazio in cui i contandini (trader) possono mettere a disposizione la propria liquidità di mele e patate (cripto valute, nello specifico token ERC-20\cite{erc_20}); tali utenti vengono definiti fornitori di liquidità (\textit{liquidity providers, da ora LP}).
+È possibile vedere una pool di liquidità come uno spazio in cui i contandini (trader) possono mettere a disposizione la propria liquidità di mele e patate (criptovalute, nello specifico token ERC-20\cite{erc_20}); tali utenti vengono definiti fornitori di liquidità (\textit{liquidity providers, da ora in poi LP}).
 \\\\Come ricompensa per la liquidità fornita, gli \textbf{LP} ricevono commissioni sulle operazioni che avvengono nella pool a cui partecipano. 
 Tali commissioni si applicano sulle singole transazioni effettuate con la liquidità fornita da un LP, e possono variare di percentuale dal 0.01\%\ fino all'1\%\.\\\\Nel caso di Uniswap, gli LP depositano un valore equivalente di due token; per esempio, 50\% ETH e 50\% USDC nella pool ETH/USDC.
 
@@ -183,7 +183,7 @@ Uniswap v3 è l'ultima versione del protocollo rilasciata da Uniswap nel maggio 
 
 \subsection{Posizioni}
 
-Utilizzando l'interfaccia Uniswap, gli utenti possono connettere il loro personale wallet per mettere a disposizione un certo ammontare di liquidità all'interno di una pool.
+Utilizzando l'interfaccia Uniswap, gli utenti possono connettere il loro wallet personale per mettere a disposizione un certo ammontare di liquidità all'interno di una pool.
 Tale liquidità, come spiegato in precedenza, dovrà mantenere un'equa proporzione tra i due asset messi a disposizione: tale operazione viene definita come \textit{apertura di una \textbf{posizione}} (o in inglese, position minting).
 \\\\Su Uniswap v3, le posizioni vengono rappresentate mediante NFT (ERC-721\cite{erc_721}), i quali certificano un determinato wallet, in questo caso chi effettua il minting, come proprietario della posizione.
 
@@ -191,13 +191,13 @@ Tale liquidità, come spiegato in precedenza, dovrà mantenere un'equa proporzio
 
 \\\\In precedenza, nella v2 di Uniswap, i LP poteva mettere a disposizione i propri asset per scambi \textbf{a qualsiasi prezzo}.
 In questo modo non vi era alcuna perdita di liquidità, portando però un importante svantaggio: la maggior parte della liquidità non veniva mai utilizzata negli scambi.
-\\\\Provando a considerare una pool contenente una coppia di due stable coins, ossia token il quale prezzo rimane relativamente costante nel tempo, possiamo assumere che la liquidità all'esterno del tipico intervallo di prezzo dei suddetti stable coins non verrebbe mai toccata.
+\\\\Provando a considerare una pool contenente una coppia di due stable coins, ossia token il cui prezzo rimane relativamente costante nel tempo, possiamo assumere che la liquidità al di fuori del tipico intervallo di prezzo dei suddetti stable coins non verrebbe mai toccata.
 \\\\Per esempio in Uniswap v2 la coppia DAI/USDC utilizza circa il 0.50\%\ del capitale totale disponibile per gli scambi all'interno del range tra \$\00.99 e \$\11.01\cite{v2_waste}. Il resto della liquidità è distribuito nella restante fascia di prezzo tra 0 e $\infty$ (escluso il range sopra citato), rendendo quel capitale inutilizzabile (e dunque, non consentendo agli LP di guadagnare commissioni). 
 
 \subsection{Liquidità concentrata}
 \\\\Ciò che rende Uniswap v3 un protocollo davvero valido è l'idea della \textit{Liquidità Concentrata}\cite{concentrated_liquidity}. Tale liquidità viene distribuita in un intervallo di prezzo personalizzabile, a scelta dell'utente.
 \\\\Riprendendo l'esempio sopra citato, un trader potrebbe decidere di investire nella pool DAI/USDC, scegliendo come range il più proficuo, ossia quello compreso tra \$\00.99 e \$\11.01.
-In tal modo, la liquidità concentrata garantirà un guadagno superiori di commissioni (da ora fees) con il capitale da loro messo a disposizione.
+In tal modo, la liquidità concentrata garantirà un guadagno superiori di commissioni (da ora in poi fees) con il capitale da loro messo a disposizione.
 
 \subsection{Tick di prezzo}
 
@@ -207,10 +207,10 @@ Per rendere la liquidità concentrata funzionale, lo spazio continuo del prezzo 
 
 \subsection{Swap e Fees}
 
-Il modo più utilizzato per interagire con Uniswap v3 è tramite gli scambi (da ora \textbf{swap}).
+Il modo più utilizzato per interagire con Uniswap v3 è tramite gli scambi (da ora in poi \textbf{swap}).
 Uno swap è relativamente semplice: un utente seleziona un token ERC-20 del quale è proprietario e un token che vorrebbe scambiare per esso. Uniswap venderà il token attualmente in possesso dell'utente, restituendo una quantità proporzionale del token desiderato, sottraendo una \textbf{swap fee}, ossia quella percentuale riconosciuta ai LPs per aver messo a disposizione la loro liquidità con la quale è avvenuto lo scambio.
 \\\\Tuttavia, la transazione potrebbe richiedere alcuni minuti, a seconda della rete su cui avviene, rilevando un fenomeno conosciuto come \textbf{slippage}.
-\\Lo slippage è l'alterazione di prezzo di un token che avviene mentre la transazione è in attesa di essere completata. Tale alterazione ha una soglia di tolleranza dell'\%\11: superata tale soglia l'operazione viene rifiutata e lo swap annullato, onde evitare grosse perdite per l'utente.
+\\Lo slippage è l'alterazione di prezzo di un token che avviene mentre la transazione è in attesa di essere completata. Tale alterazione ha una soglia di tolleranza dell'1\%\: superata tale soglia l'operazione viene rifiutata e lo swap annullato, onde evitare grosse perdite per l'utente.
 
 \section{Complicazioni di Uniswap v3}
 
