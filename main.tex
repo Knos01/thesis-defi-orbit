@@ -19,7 +19,6 @@
 \usepackage[nottoc]{tocbibind}
 
 
-
 \begin{document}
 
 
@@ -109,8 +108,9 @@ Ciò incrementa le già prolisse tempistiche burocratiche, oltre ad aggiungere i
 \section{Caratteristiche e vantaggi della DeFi}
 
 \subsection{Applicazioni decentralizzate}
-Gli applicativi software utilizzati in DeFi vengono chiamati \textit{dApps (decentralized applications)}, ovvero particolari prodotti che utilizzano la blockchain di \textbf{Ethereum}\cite{ethereum}, una delle principali criptovalute, nota per la sua flessibilità e accessibilità.\\\\
-Su tale blockchain risiedono dei particolari programmi denominati \textit{Smart Contracts}\cite{smartcontracts}, i quali si occupano di garantire sicurezza, trasparenza e irreversibilità delle operazioni avvenute sulla blockchain di Ethereum.\\
+Gli applicativi software utilizzati in DeFi vengono chiamati \textit{dApps (decentralized applications)}, ovvero particolari prodotti che interagiscono con diverse blockchain. Di tali reti noi considereremo solo quella di \textbf{Ethereum}\cite{ethereum}, nota per la sua flessibilità e accessibilità.\\\\
+La blockchain di Ethereum, a differenza di reti come quella di \textbf{Bitcoin}\cite{bitcoin}, è \textbf{programmabile}; ossia è possibile costruirci sopra e distribuire dApps, rendendo la rete una sorta di gigantesco marketplace in cui trovare servizi finanziari, videogiochi, social network e diverse altre applicazioni.
+\\Su tale blockchain risiedono dei particolari programmi denominati \textit{Smart Contracts}\cite{smartcontracts}, i quali si occupano di garantire sicurezza, trasparenza e irreversibilità delle operazioni avvenute sulla blockchain.\\
 
 \subsection{Accesso alle dApps}
 
@@ -189,15 +189,18 @@ Tale liquidità, come spiegato in precedenza, dovrà mantenere un'equa proporzio
 
 \subsection{Complicazioni di Uniswap v2}
 
-\\\\In precedenza, nella v2 di Uniswap, i LP poteva mettere a disposizione i propri asset per scambi \textbf{a qualsiasi prezzo}.
-In questo modo non vi era alcuna perdita di liquidità, portando però un importante svantaggio: la maggior parte della liquidità non veniva mai utilizzata negli scambi.
+\\\\In precedenza, nella v2 di Uniswap, i LP potevano mettere a disposizione i propri asset per scambi \textbf{a qualsiasi intervallo di prezzo}.
+\\\\Consideriamo che io, trader che utilizza Uniswap, voglia mettere a disposizione due miei asset chiamati token $A$ e token $B$.
+Ricordando che l'intervallo di prezzo che scelgo per aprire una posizione è sempre il prezzo di $A$ rispetto al prezzo di $B$ ($A$ \textbf{su} $B$), decido di scegliere un range che copra tutti i prezzi possibili.\\
+In questo modo non vi è alcuna perdita di liquidità, portando però un importante svantaggio: la maggior parte della liquidità non viene mai utilizzata negli scambi.
 \\\\Provando a considerare una pool contenente una coppia di due stable coins, ossia token il cui prezzo rimane relativamente costante nel tempo, possiamo assumere che la liquidità al di fuori del tipico intervallo di prezzo dei suddetti stable coins non verrebbe mai toccata.
-\\\\Per esempio in Uniswap v2 la coppia DAI/USDC utilizza circa il 0.50\%\ del capitale totale disponibile per gli scambi all'interno del range tra \$\00.99 e \$\11.01\cite{v2_waste}. Il resto della liquidità è distribuito nella restante fascia di prezzo tra 0 e $\infty$ (escluso il range sopra citato), rendendo quel capitale inutilizzabile (e dunque, non consentendo agli LP di guadagnare commissioni). 
+\\\\Per esempio in Uniswap v2 la coppia DAI/USDC (\textbf{entrambi stable coins dal valore di circa \$\01}) utilizza circa il 0.50\%\ del capitale totale disponibile per gli scambi all'interno del range tra \$\00.99 e \$\11.01\cite{v2_waste}. Il resto della liquidità è distribuito nella restante fascia di prezzo tra 0 e $\infty$ (escluso il range sopra citato), rendendo quel capitale inutilizzabile (e dunque, non consentendo agli LP di guadagnare commissioni). 
+\\\\Ciò è dovuto al fatto che la liquidità sia uniformemente distribuita in un range di prezzo da 0 a $\infty$, senza che sia \textit{concentrata} nel giusto intervallo: per tale ragione è stato introdotto \textbf{Uniswap v3}.
 
 \subsection{Liquidità concentrata}
 \\\\Ciò che rende Uniswap v3 un protocollo davvero valido è l'idea della \textit{Liquidità Concentrata}\cite{concentrated_liquidity}. Tale liquidità viene distribuita in un intervallo di prezzo personalizzabile, a scelta dell'utente.
 \\\\Riprendendo l'esempio sopra citato, un trader potrebbe decidere di investire nella pool DAI/USDC, scegliendo come range il più proficuo, ossia quello compreso tra \$\00.99 e \$\11.01.
-In tal modo, la liquidità concentrata garantirà un guadagno superiori di commissioni (da ora in poi fees) con il capitale da loro messo a disposizione.
+In tal modo, la liquidità concentrata garantirà un guadagno superiori di commissioni (da ora in poi fees) sfruttando il capitale messo a disposizione dai LPs.
 
 \subsection{Tick di prezzo}
 
@@ -227,7 +230,7 @@ Allo stesso modo, se ETH dovesse aumentare di valore, la percentuale di USDC aum
 
 
 
-\chapter{Orbit, piattaforma per automatizzare le strategie DeFi}
+\chapter{Orbit, piattaforma per automatizzare strategie DeFi}
 
 Ho avuto l'opportunità di svolgere il mio Project Work per Five Elements Labs, azienda specializzata nella produzione di software nel mondo blockchain; in particolare nei settori DeFi e NFT.
 \\Durante tale esperienza, mi sono unito allo sviluppo del loro principale prodotto: \textbf{Orbit}\cite{orbit_website}.
@@ -241,36 +244,45 @@ Ho avuto l'opportunità di svolgere il mio Project Work per Five Elements Labs, 
 \section{Perché nasce Orbit}
 
 Con il rapido crescere del settore DeFi e del corrispondente ecosistema di protocolli, ognuno con le proprie caratteristiche e logiche, risulta sempre più complesso gestire delle strategie di liquidità al passo con i tempi.
-\\Diverse blockchain con fee a basso costo (come \textbf{Polygon}\cite{polygon}) stanno diventando sempre più popolari, spostando l'attenzione degli sviluppatori e degli utenti verso la possibilità di costruire piattaforme e strumenti veloci ed efficaci.
-\\\\Orbit dunque cavalca quest'onda di innovazione e di creatività, portando la liquidità concentrata verso un nuovo livello, costruendo uno strumento efficiente e facile da utilizzare per professionisti e piccoli investitori.
 
-\subsection{Vantaggi per gli utenti}
+\subsection{Gas fee}
+\\Ogni transazione avvenuta sulla blockchain ha un \textit{"costo"} chiamato \textbf{gas fee}\cite{gas}.
+\\È possibile affermare che il gas sta alla blockchain come la \textbf{benzina} sta alla macchina; è necessario per far funzionare i nodi che compongono la rete.
+\\Sostanzialmente è l'unità di misura dello \textit{sforzo computazionale} fatto dai nodi per sostenere una transazione, la quale può prevedere diverse complesse operazioni al suo interno.
+\\Tale benzina deve essere in qualche modo pagata, per questo esistono commissioni sul gas (gas fee).
+\\\\Diverse blockchain con basse gas fee (come \textbf{Polygon}\cite{polygon}) stanno diventando sempre più popolari, spostando l'attenzione degli sviluppatori e degli utenti verso la possibilità di costruire piattaforme e strumenti veloci ed efficaci.
+\\\\Orbit dunque cavalca quest'onda di innovazione e di creatività, portando la liquidità concentrata verso un nuovo livello, costruendo uno strumento efficiente e facile da utilizzare per professionisti e novizi del mondo DeFi.\\\\
 
-Automatizzare le proprie posizioni su Uniswap v3 ha un diretto impatto sui ritorni generati da queste ultime.
-\\Le funzionalità fornite da Orbit permettono agli utenti di creare strategie passive, senza il necessario bisogno di rimanere aggiornati sui protocolli, bensì lasciando alla piattaforma il compito di gestire la propria liquidità.
-\\Inoltre, nella prima versione del protocollo, sarà Orbit ad occuparsi dei costi di gas dovuti alle transazioni.\\
+\section{Vantaggi per gli utenti}
+
+Automatizzare strategie riguardo posizioni su Uniswap v3 ha un diretto impatto sui \textbf{ritorni generati} da queste ultime.
+\\La maggior parte dei protocolli presenti sul mercato forniscono ai trader \textbf{strategie attive}, sulle quali è necessario compiere delle complesse scelte conosciute perlopiù da utenti professionisti.
+\\\\Le funzionalità fornite da Orbit permettono agli utenti di creare \textbf{strategie passive}, senza il necessario bisogno di rimanere aggiornati sui protocolli, bensì lasciando alla piattaforma il compito di gestire la propria liquidità.
+\\Inoltre, nella prima versione del protocollo, sarà Orbit ad occuparsi dei costi di gas dovuti alle transazioni rivolte agli smart contract dell'applicazione.
 
 \section{Modelli di gestione di liquidità}
 
-Nello stato attuale della DeFi, vi sono concretamente due modelli ben distinti di gestione di liquidità:  \textbf{Aggregatori}\cite{aggregator} e  \textbf{Smart Vaults}(*aggiungo reference).
+Nello stato attuale della DeFi, vi sono concretamente due modelli ben distinti di gestione di liquidità:  \textbf{Aggregatori}\cite{aggregator} e  \textbf{Smart Vaults}\cite{smart_vault}.
 
 \subsection{Aggregatori}
 
-Gli Aggregatori sono delle particolari piattaforme DeFi, le quali permettono ai propri utenti di effettuare transazioni attraverso diverse dApps in un unico posto. Ciò permette di risparmiare tempo e aumentare l'efficienza delle transazioni.
-\\Tuttavia, protocolli come Yearn, Beefy o Idle consentono all'utente l'utilizzo di strategie singole, tipicamente con un modello "\textit{Black Box}", ovvero senza verificarne l'effettivo funzionamento interno.
+Gli Aggregatori sono delle particolari piattaforme DeFi, le quali permettono ai propri utenti di effettuare transazioni verso diverse dApps \textbf{in un unico posto}. Ciò permette di risparmiare tempo e aumentare l'efficienza delle transazioni.
+\\\\Tali Aggregatori permettono ai trader di \textbf{replicare} strategie di utenti esperti e di applicarle al proprio portfolio. Per esempio, possono confrontare i prezzi degli assets su diverse piattaforme, proponendo lo scambio più conveniente all'utente.
+\\\\Tuttavia, protocolli utilizzatori di Aggregatori come \textit{Yearn Finance}, \textit{Beefy} o \textit{Idle} consentono all'utente l'utilizzo di strategie singole, tipicamente con un modello "\textit{Black Box}", ovvero senza verificarne l'effettivo funzionamento interno.
 
 \subsection{Smarts vaults}
 
-Contrariamente agli Aggregatori, gli Smart Vaults garantiscono un'alta personalizzazione delle strategie scelte direttamente dagli utenti.
-\\Il funzionamento è relativamente semplice: un utente diventa \textit{proprietario} di un particolare Smart Contract, usandolo come account per gestire i propri assets e per connettersi ad altri protocolli per allocazioni automatiche di liquidità: tale Smart Contract è difatti uno Smart Vault.
-\\\\Il modello a Smart Vault è stato poco utilizzato in passato, principalmente a causa delle alte fee dovute per attivare le strategie multiple.
-\\Tuttavia, con l'avvento di blockchain sempre meno costose in termini di gas, è possibile utilizzare gli Smart Vaults per integrare facilmente nuovi protocolli e fornire all'utente la possibilità di avere un totale controllo su di essi.
-\\Per tali ragioni, il modello a Smart Vault è stato scelto per la realizzazion di Orbit.
+Contrariamente agli Aggregatori, gli \textbf{Smart Vaults} garantiscono un'alta \textbf{personalizzazione} delle strategie scelta direttamente dagli utenti.
+\\Il funzionamento è relativamente semplice: un utente diventa \textit{proprietario} di un particolare Smart Contract, il quale viene usato per gestire i propri assets e per interagire con altri protocolli per consentire allocazioni automatiche di liquidità: tale Smart Contract è chiamato Smart Vault.
+\\\\Il modello a Smart Vault è stato poco utilizzato in passato, principalmente a causa delle alte gas fee dovute per attivare strategie multiple.
+\\Tuttavia, con l'avvento di blockchain sempre meno costose in termini di gas, è ora possibile utilizzare gli Smart Vaults per integrare facilmente nuovi protocolli e fornire all'utente la possibilità di avere un totale controllo sulle interazioni con essi.
+\\Per tali ragioni, il modello a Smart Vault è stato scelto per la realizzazione di Orbit.
 
-\section{Differenze di Orbit dai competitor}
+
 \chapter{Tecnologie utilizzate nello sviluppo di Orbit}
 
 \chapter{Architettura degli Smart Contracts di Orbit}
+
 
 \chapter{Future implementazione all'interno di Orbit}
 
