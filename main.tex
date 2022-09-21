@@ -273,13 +273,37 @@ Gli Aggregatori sono delle particolari piattaforme DeFi, le quali permettono ai 
 \subsection{Smarts vaults}
 
 Contrariamente agli Aggregatori, gli \textbf{Smart Vaults} garantiscono un'alta \textbf{personalizzazione} delle strategie scelta direttamente dagli utenti.
-\\Il funzionamento è relativamente semplice: un utente diventa \textit{proprietario} di un particolare Smart Contract, il quale viene usato per gestire i propri assets e per interagire con altri protocolli per consentire allocazioni automatiche di liquidità: tale Smart Contract è chiamato Smart Vault.
-\\\\Il modello a Smart Vault è stato poco utilizzato in passato, principalmente a causa delle alte gas fee dovute per attivare strategie multiple.
+\\Il funzionamento è relativamente semplice: un utente diventa \textit{proprietario} di un particolare Smart Contract effettuando una transazione che ne crea un'istanza contenente l'indirizzo del suo creatore.\footnote{Approfondimenti tecnici riguardanti la creazione dello Smart Vault e dei relativi contratti associati verranno trattati nel capitolo 5}.
+\\Successivamente, il contratto creato viene utilizzato come \textit{un'estensione} del proprio wallet per gestire assets e per interagire con altri protocolli per consentire allocazioni automatiche di liquidità: tale Smart Contract è chiamato Smart Vault.
+\\\\Il modello a Smart Vault è stato poco utilizzato in passato, principalmente a causa delle alte gas fee richieste dalle reti per attivare strategie multiple.
 \\Tuttavia, con l'avvento di blockchain sempre meno costose in termini di gas, è ora possibile utilizzare gli Smart Vaults per integrare facilmente nuovi protocolli e fornire all'utente la possibilità di avere un totale controllo sulle interazioni con essi.
-\\Per tali ragioni, il modello a Smart Vault è stato scelto per la realizzazione di Orbit.
+\\\\Per tali ragioni, il modello a Smart Vault è stato scelto per la realizzazione di Orbit.
 
 
 \chapter{Tecnologie utilizzate nello sviluppo di Orbit}
+
+Orbit è una piattaforma che prende forma nel mondo del Web3, pertanto per la sua realizzazione sono state richieste tecnologie specifiche di questo emergente settore.
+\\Possiamo logicamente suddividere Orbit in due macro parti: il \textbf{frontend}, ossia l'interfaccia della dApp\cite{orbit_website} con la quale l'utente interagisce direttamente, ed il \textbf{backend} composto da una suite di contratti che racchiudono le logiche e meccanismi su cui Orbit si basa.
+
+\section{Tecnologie Frontend e librerie utilizzate}
+
+La scelta del linguaggio utilizzato per la dApps di Orbit, trattandosi di un'applicazione web, è ricaduta sul linguaggio \textbf{Javascript}\cite{js}.\\Le caratteristiche del linguaggio, quali \textit{versatilità, leggerezza e facilità d'apprendimento} hanno condizionato questa scelta.
+\\\\Inoltre, a seguito di uno studio di mercato riguardante le librerie utilizzate dalle moderne dApps, incrociato con le competenze degli sviluppatori del team di Five Elements Labs, sono state selezionate una serie di librerie coerenti con lo stack tecnologico scelto.
+
+\subsection{Creazione degli elementi dell'interfaccia}
+
+\subsection{Stile dell'applicazione}
+
+\subsection{Interazione con gli smart contracts}
+
+\subsection{Usabilità del sistema}
+
+\section{Tecnologie Backend}
+
+\subsection{Solidity}
+
+\subsection{Hardhat}
+
 
 \chapter{Architettura degli Smart Contracts di Orbit}
 
