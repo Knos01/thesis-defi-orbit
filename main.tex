@@ -9,6 +9,7 @@
 
 % Useful packages
 \usepackage{amsmath}
+\usepackage{float}
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage[T1]{fontenc}
@@ -53,6 +54,9 @@
 
         \noindent
         {\large \textbf{Relatore:} Prof. Alberto Leporati } \\
+        
+         \noindent
+        {\large \textbf{Correlatore:} Ing. Paolo Antonio Rossi}
         
         \vspace{15mm}
 
@@ -273,7 +277,7 @@ Gli Aggregatori sono delle particolari piattaforme DeFi, le quali permettono ai 
 \subsection{Smarts vaults}
 
 Contrariamente agli Aggregatori, gli \textbf{Smart Vaults} garantiscono un'alta \textbf{personalizzazione} delle strategie scelta direttamente dagli utenti.
-\\Il funzionamento è relativamente semplice: un utente diventa \textit{proprietario} di un particolare Smart Contract effettuando una transazione che ne crea un'istanza contenente l'indirizzo del suo creatore.\footnote{Approfondimenti tecnici riguardanti la creazione dello Smart Vault e dei relativi contratti associati verranno trattati nel capitolo 5}.
+\\Il funzionamento è relativamente semplice: un utente diventa \textit{proprietario} di un particolare Smart Contract effettuando una transazione che ne crea un'istanza contenente l'indirizzo del suo creatore.\footnote{Approfondimenti tecnici riguardanti la creazione dello Smart Vault e dei relativi Smart Contracts verranno trattati nel capitolo 5}.
 \\Successivamente, il contratto creato viene utilizzato come \textit{un'estensione} del proprio wallet per gestire assets e per interagire con altri protocolli per consentire allocazioni automatiche di liquidità: tale Smart Contract è chiamato Smart Vault.
 \\\\Il modello a Smart Vault è stato poco utilizzato in passato, principalmente a causa delle alte gas fee richieste dalle reti per attivare strategie multiple.
 \\Tuttavia, con l'avvento di blockchain sempre meno costose in termini di gas, è ora possibile utilizzare gli Smart Vaults per integrare facilmente nuovi protocolli e fornire all'utente la possibilità di avere un totale controllo sulle interazioni con essi.
@@ -287,22 +291,53 @@ Orbit è una piattaforma che prende forma nel mondo del Web3, pertanto per la su
 
 \section{Tecnologie Frontend e librerie utilizzate}
 
-La scelta del linguaggio utilizzato per la dApps di Orbit, trattandosi di un'applicazione web, è ricaduta sul linguaggio \textbf{Javascript}\cite{js}.\\Le caratteristiche del linguaggio, quali \textit{versatilità, leggerezza e facilità d'apprendimento} hanno condizionato questa scelta.
-\\\\Inoltre, a seguito di uno studio di mercato riguardante le librerie utilizzate dalle moderne dApps, incrociato con le competenze degli sviluppatori del team di Five Elements Labs, sono state selezionate una serie di librerie coerenti con lo stack tecnologico scelto.
+La scelta del linguaggio utilizzato per la dApp Orbit, trattandosi di un'applicazione web, è ricaduta sul linguaggio \textbf{Javascript}\cite{js}.\\Le caratteristiche del linguaggio, quali \textit{versatilità, leggerezza e facilità d'apprendimento} hanno condizionato questa scelta.
+\\\\Inoltre, a seguito di uno studio di mercato riguardante le librerie utilizzate dalle moderne dApps, incrociato con le competenze degli sviluppatori del team di Five Elements Labs, sono state selezionate una serie di librerie coerenti con lo il linguaggio scelto.
+\\\\Lo sviluppo del frontend di Orbit e la relativa interazione con wallet e smart contracts è stato il principale compito affidatomi durante il mio Project Work.
 
-\subsection{Creazione degli elementi dell'interfaccia}
+\subsection{Elementi dell'interfaccia}
 
-\subsection{Stile dell'applicazione}
+Per la creazione degli elementi che formano l'interfaccia di Orbit, è stata scelto \textbf{ReactJS}\cite{react}, una libreria Javascript per la sviluppo di \textbf{Single Page Application} (SPA\cite{spa}), che permette la creazione di componenti flessibili e riutilizzabili, nonché la più utilizzata nel 2021 tra le librerie web secondo \textit{StackOverflow}\cite{react_2021}.
+\\Per quanto riguarda invece lo stile dei componenti è stata utilizzata \textbf{tailwind}\cite{tailwind} un framework CSS che permette di utilizzare classi per il layout, colori, tipografia e altre caratteristiche stilistiche dell'interfaccia grafica.
 
-\subsection{Interazione con gli smart contracts}
+\subsection{Interazione con gli Smart Contracts}
+
+Ciò che più differenzia un'applicazione web2 da una dApp in web3 è l'interazione con gli Smart Contracts.\\La libreria scelta per tale interazione è stata \textbf{ethers.js}\cite{ethers}: come suggerisce il nome, si tratta di una libreria Javascript che mira a facilitare l'interazione con la Blockchain di Ethereum (nel nostro caso, Polygon).
+\\Tra le sue molteplici funzionalità, vi sono la \textit{connessione di un wallet} alla dApp, la \textit{creazione di istanze di oggetti che rappresentano Smart Contracts} utilizzabili direttamente nel Frontend ed infine la \textit{firma dei messaggi relativi alle transazioni}.
+
+\section{Connessione wallet to wallet}
+
+Analogamente all'interazione \textit{"Client-Server"} del web tradizionale, vi è un'interazione \textit{Wallet-to-Wallet} nel Web3. Ogni utente più avere uno o più wallet digitali, ciascuno dei quali viene identificato da un indirizzo (\textbf{Ethereum Address}) a \textbf{42 caratteri alfanumerici}. Tra questi, 40 sono in formato numerico esadecimale e i restanti 2 compongono il prefisso \textbf{0x}.
+\\\\A questo punto, è lecito chiedersi come possa un wallet interagire con gli Smart Contracts di Orbit.\\
+Nello stesso modo in cui i wallet possono comunicare tra loro, ossia attraverso l'invio e ricezione di transazioni, anche uno Smart Contract può ricevere delle transazioni, essendo identificato sulla blockchain con un proprio indirizzo esadecimale.
+\\\\Per fare un esempio, lo Smart Contract del token \textbf{WETH} presente sulla rete Polygon, si trova all'indirizzo:\\
+\[ 0x7ceb23fd6bc0add59e62ac25578270cff1b9f619 \]
+\\Ciò significa che se un wallet volesse interagire con il contratto, magari per controllare l'ammontare di WETH che possiede, dovrebbe inviare una transazione a tale indirizzo. Dunque, a seconda dei parametri impostati, verrà eseguirà una specifica funzione presente nello Smart Contract, che potrebbe utilizzare con i dati presenti in esso, modificandoli o inviandoli al mittente della transazione.
+
+\subsection{Metamask e Wallet Connect}
+\\\\Per dare la possibilità ad un utente di connettere il proprio wallet ad Orbit ed effettuare le operazioni appena discusse, è stato scelto di implementare due sistemi: il primo, forse più noto nel Web3, è il wallet per criptovalute \textbf{Metamask}\cite{metamask} mentre il secondo è il protocollo \textbf{WalletConnect}\cite{walletconnect}.
+\\\\Metamask non è solo un wallet digitale, ma un vero e proprio \textit{gateway} per interagire con applicazioni decentralizzate. Come si può vedere nella figura \ref{fig:metamask}, si presenta come un'estensione del browser, dalla quale si può gestire più wallet personali presenti su blockchain diverse, visualizzare lo storico delle transazioni effettuate, l'ammontare dei token ERC-20 posseduti dall'utente ed effettuare transazioni.\\
+\begin{figure}[H]
+  \includegraphics[scale=0.6]{metamask.png}
+  \centering
+  \caption{Screenshot di uno dei miei personali wallet su Metamask, estensione browser}
+  \label{fig:metamask}
+\end{figure}
+\noindent \\WalletConnect è invece un protocollo che permette di integrare all'interno della propria dApp più tipologie di wallet (tra i quali anche Metamask).\\Le principali caratteristiche di WalletConnect sono \textbf{adattabilità} e \textbf{facilità di integrazione} con un qualsiasi portafoglio digitale: basterà che l'utente selezioni la propria wallet app o che inquadri un QR Code per effettuare immediatamente la connessione alla dApp di Orbit. 
+\\\\Inoltre, è una valida soluzione per facilitare la connessione ad una dApp da dispositivi mobili, che allo stato attuale risulta ostica per la maggior parte dei prodotti Web3.
 
 \subsection{Usabilità del sistema}
+
+Nei mesi precedenti al lancio del prodotto, è stato svolto un importante lavoro di analisi di usabilità per rendere Orbit una piattaforma quanto più accessibile per i propri utenti, svolgendo delle sessione di \textbf{Beta Testing}, attraverso le quali sono sorti dubbi e feedback che hanno estremamente semplificato il flusso utente del prodotto finale. 
+\\\\In quest'ultima parte, sono riuscito a dare il mio contributo attraverso nozioni imparate nel mio percorso di studi, in particolare in \textit{Interazione Uomo-Macchina}, quali principi di design dell'usabilità, scelta di palette cromatiche inclusive per persone con anomalie visive quali il daltonismo ed euristiche per facilitare l'esperienza utente.  
 
 \section{Tecnologie Backend}
 
 \subsection{Solidity}
 
 \subsection{Hardhat}
+
+
 
 
 \chapter{Architettura degli Smart Contracts di Orbit}
