@@ -333,14 +333,26 @@ Nei mesi precedenti al lancio del prodotto, è stato svolto un importante lavoro
 
 \section{Tecnologie Backend}
 
+Il Backend è ciò che l'utente non vede concretamente, ma che contiene la logica applicativa di Orbit, costruita sopra una suite di Smart Contracts che ricoprono le principali funzionalità della piattaforma.
+
 \subsection{Solidity}
+
+Per lo sviluppo degli Smart Contracts di Orbit è stato scelto \textbf{Solidity}\cite{solidty}, il linguaggio di programmazione che viene utilizzato per sviluppare la maggior parte delle tecnologie blockchain presenti sul mercato. Nonostante la sua iniziale difficoltà di apprendimento, l'ecosistema di Solidity permette di avere una vasta scelta di librerie e contratti consolidati su cui basare i propri progetti.
+\\Si tratta di un linguaggio \textit{orientato agli oggetti}, di alto livello e che supporta \textit{complessi tipi di oggetti} definiti dallo sviluppatore, ideale per ospitare ogni tipo di strutture dati.
+\\\\Tuttavia, come già accennato nel capitolo precedente, le blockchain \textbf{Ethereum-based} hanno un costo computazionale rilevante, misurato in gas. Per questa ragione bisogna prestare particolare attenzione quando si utilizzano linguaggi come Solidity, in quanto una semplice \textbf{implementazione di una funzione} mal realizzata potrebbe richiedere un costo extra che, a seconda della rete in cui ci si trova, potrebbe risultare in un'importante spesa per il il mittente della transazione.
 
 \subsection{Hardhat}
 
-
+Data la delicatezza e fragilità dello sviluppo di una suite di Smart Contracts, è necessario avere uno strumento per testarne le principali funzioni, possibilmente prima che essi vengano rilasciati sulla blockchain. Proprio per questo è stato scelto di utilizzare \textbf{Hardhat}\cite{hardhat}, un ambiente di sviluppo per costruire software sulla blockchain di Ethereum, il quale comprende diverse librerie che sinergizzano alla perfezione con lo sviluppo di Smart Contracts.\\\\\textbf{Hardhat Runner} è una tra queste: viene utilizzato per costruire dei \textbf{task}, ossia azioni eseguibili tramite linea di comando.
+Per esempio, sono state realizzate specifiche azioni per compilare il codice degli Smart Contracts, eseguire dei test su di essi e distribuirli (\textit{deploy}) sulla rete locale di Hardhat.
+\\Infatti, uno dei tanti vantaggi di Hardhat è quello di testare i propri contratti su una rete locale, contenente 20 indirizzi utilizzabili per effettuare transazioni verso i propri Smart Contracts, al fine di avere un ambiente che preceda quello di produzione.
+\\Inoltre, sono stati realizzati decine di test per ogni funzione dei contratti di Orbit, realizzati nel linguaggio \textbf{Typescript} che, a differenza di Javascript, ha un forte controllo sulla tipizzazione delle variabili, costruzione di interfacce e fornisce una sicurezza maggiore nello sviluppo.
+\\\\Per la costruzione delle Test Suite sono state utili delle nozioni imparate durante il corso di \textit{Sicurezza e Affidabilità}, che mi ha permesso di dare un contribuito nel lavoro svolto dai miei colleghi nello sviluppo dei contratti.
 
 
 \chapter{Architettura degli Smart Contracts di Orbit}
+
+\section{Audit}
 
 
 \chapter{Future implementazione all'interno di Orbit}
