@@ -1,4 +1,4 @@
-\documentclass{report}
+\documentclass[12pt,a4paper]{report}
 
 
 \usepackage[italian]{babel}
@@ -11,14 +11,25 @@
 \usepackage{amsmath}
 \usepackage{float}
 \usepackage{graphicx}
-\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[colorlinks=true, allcolors=black]{hyperref}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{setspace}
 \usepackage[paper=a4paper,margin=1in]{geometry}
 \usepackage[square,numbers,super]{natbib}
 \usepackage[nottoc]{tocbibind}
-
+\makeatletter
+\renewenvironment{abstract}{%
+    \if@twocolumn
+      \section*{\abstractname}%
+    \else
+      \begin{center}%
+        {\bfseries \Large\abstractname\vspace{\z@}}
+      \end{center}%
+      \quotation
+    \fi}
+    {\if@twocolumn\else\endquotation\fi}
+\makeatother
 
 \begin{document}
 
@@ -50,7 +61,7 @@
             }}
         \end{center}
         
-        \vspace{50mm}
+        \vspace{40mm}
 
         \noindent
         {\large \textbf{Relatore:} Prof. Alberto Leporati } \\
@@ -75,7 +86,12 @@
         
     \end{titlepage}
 
+
+\begin{abstract}
+   Qui scrivo il sommario
+\end{abstract}
 \tableofcontents
+
 
 \begin{enumerate}
 \item Introduzione alla Finanza Decentralizzata
@@ -94,8 +110,22 @@
 
 
 \chapter{Introduzione}
-Il tema centrale di questa tesi di laurea è la \textbf{finanza decentralizzata}.\\ In particolare, si approfondirà il ruolo che la blockchain ha in questo settore, fornendo esempi di un prodotto software concretamente sviluppato durante il mio  \textit{Project Work} svolto presso l'azienda \textit{Five Elements Labs Srl}.
-\\\\Inoltre, verranno approfonditi i concetti di \textit{pool di liquidità}, \textit{automated market maker(AMM)} e \textit{strategie DeFi} su Uniswap v3.
+Il tema centrale di questa Tesi di Laurea è la \textbf{finanza decentralizzata}.\\ In particolare, si approfondirà il ruolo che la blockchain ha in questo settore, fornendo esempi di un prodotto software concretamente sviluppato durante il mio  \textit{Project Work}, svolto presso l'azienda \textit{Five Elements Labs Srl}.
+\\\\Inoltre, verranno approfonditi i concetti di \textit{pool di liquidità}, \textit{automated market maker(AMM)} e \textit{strategie multiple} su Uniswap v3.
+
+\section{Un breve sguardo alla tecnologia}
+
+Alla base di tutti i protocolli e prodotti software analizzati in questa Tesi, vi è un minimo comune denominatore che prende il nome di \textbf{blockchain}\cite{blockchain}.
+\\La blockchain altro non è che un database (o in termini contabili, \textit{libro mastro}) \textbf{condiviso} tra più nodi di una rete, \textbf{validati} dalla rete stessa e strutturato come una catena di blocchi contenenti delle \textbf{transazioni}.
+\\\\Sostanzialmente possiamo riassumere le funzionalità di questa rete di blocchi in 3 importanti concetti:
+
+\begin{itemize}
+  \item \textbf{tracciabilità} - tutti i partecipanti alla rete e le transazioni registrate devono poter essere rintracciabili
+  \item \textbf{immutabilità} - una volta che una transazione viene salvata sulla blockchain, nessun partecipante alla rete può in alcun modo alterarne il contenuto
+  \item \textbf{sicurezza} - la rete è realizzata mediante sistemi crittografici che ne garantiscono la sicurezza
+\end{itemize}
+
+\noindent Questa recente tecnologia è oggi in \textbf{piena crescita}: nonostante il mercato finanziario digitale non sia nelle migliori condizioni, lascia spazio a molte aziende e sviluppatori indipendenti per costruire prodotti innovativi e ad altissimo potenziale.
 
 \section{Cos'è la Finanza Decentralizzata}
 
@@ -167,8 +197,8 @@ Un esempio pratico che mi ha aiutato a comprendere il funzionamento degli AMM è
 \\Tale regola è in realtà la formula alla base dell'AMM di Uniswap, conosciuta come \textbf{Constant Product Formula}: 
 
 \[ x * y = k \]
-\\dove $x$ corrisponde al numero di mele e $y$ al numero di patate nel contenitore.
-\\Inizialmente il contenitore sarà perfettamente bilanciato, per esempio con 500 mele e 500 patate, entrambe prezzate ad €1 per un valore totale di €1.000.
+\\dove $x$ corrisponde al numero di mele e $y$ al numero di patate nel contenitore; in genere $k$ è detta \textbf{liquidità} del contenitore.
+\\Inizialmente il contenitore sarà perfettamente bilanciato, per esempio con 500 mele e 500 patate, entrambe prezzate ad €1 per un valore totale (che in questo caso corrisponde alla liquidità) di €1.000.
 \\\\Tuttavia, se un contadino volesse scambiare le sue patate grazie al contenitore, potrebbe ricevere in cambio meno mele rispetto alle patate inviate.
 Questo perché il prezzo della mela potrebbe aumentare, e dunque per bilanciare il contenitore il prezzo delle patate dovrà di conseguenza diminuire.
 \\Allo stesso modo, se un contadino volesse scambiare le proprie mele, riceverebbe più patate di quelle che avrebbe ricevuto inizialmente, considerato l'aumento del prezzo della mela rispetto alle patate.
@@ -350,9 +380,28 @@ Per esempio, sono state realizzate specifiche azioni per compilare il codice deg
 \\\\Per la costruzione delle Test Suite sono state utili delle nozioni imparate durante il corso di \textit{Sicurezza e Affidabilità}, che mi ha permesso di dare un contribuito nel lavoro svolto dai miei colleghi nello sviluppo dei contratti.
 
 
-\chapter{Architettura degli Smart Contracts di Orbit}
+\chapter{Design Patterns dell'Architettura di Orbit}
+
+Durante i mesi di sviluppo di Orbit, sono state effettuate numerose ricerche da parte della squadra di sviluppo di Five Elements Labs, in modo tale da scegliere un'architettura e dei \textbf{design patterns} quanto più sicuri e aggiornati con le ultime tecnologie del mondo DeFi e Smart Contracts.
+
 
 \section{Audit}
+
+\section{Architettura}
+
+\subsection{Position Manager}
+
+\subsection{Actions}
+
+\subsection{Moduli}
+
+\subsection{Helpers}
+
+\section{Sicurezza}
+
+\subsection{Registry patterns}
+
+\subsection{Timelock}
 
 
 \chapter{Future implementazione all'interno di Orbit}
