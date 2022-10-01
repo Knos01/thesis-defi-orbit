@@ -10,7 +10,10 @@
 % Useful packages
 \usepackage{amsmath}
 \usepackage{float}
-\usepackage{graphicx}
+\usepackage{graphicx}\usepackage{array}
+\newenvironment{conditions}
+  {\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}={}$} l}}
+  {\end{tabular}\par\vspace{\belowdisplayskip}}
 \usepackage[colorlinks=true, allcolors=black]{hyperref}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -205,23 +208,60 @@ In questo modo acquirenti e venditori interagiscono direttamente con la pool (e 
 \subsection{Esempio pratico di AMM}
 
 Un esempio pratico che mi ha aiutato a comprendere il funzionamento degli AMM è quello dei contadini di mele e patate.
-\\Immaginiamo di essere un contadino e di avere solo patate, senza la possibilità di coltivare, e di conseguenza mangiare, nient'altro.\\ Un giorno ci viene proposto di effettuare degli scambi con un venditore di mele attraverso un messaggero, il quale decide di custodire mele e patate in un contenitore magico, in modo tale che rimangano a disposizione senza marcire (e dunque perdere di valore).
+\\Immaginiamo di essere un contadino e di avere solo patate, senza la possibilità di coltivare, e di conseguenza mangiare, nient'altro.\\ Un giorno ci viene proposto di effettuare degli scambi con un venditore di mele attraverso un messaggero, il quale decide di custodire mele e patate in un \textit{contenitore magico}, in modo tale che rimangano a disposizione per gli scambi.
 \\\\La regola fondamentale per questo scambio è una sola: \textit{il contenitore magico dovrà sempre contenere lo stesso valore di mele e patate.}
-\\Tale regola è in realtà la formula alla base dell'AMM di Uniswap, conosciuta come \textbf{Constant Product Formula}: 
+\\Tale regola è in realtà la formula alla base dell'AMM di Uniswap, conosciuta come \textbf{Constant Product Formula} \ref{eqn:const_prod_f} (rappresentata graficamente nella figura \ref{fig:const_prod}): \\
 
-\[ x * y = k \]
-\\dove $x$ corrisponde al numero di mele e $y$ al numero di patate nel contenitore; in genere $k$ è detta \textbf{liquidità} del contenitore.
-\\Inizialmente il contenitore sarà perfettamente bilanciato, per esempio con 500 mele e 500 patate, entrambe prezzate ad €1 per un valore totale (che in questo caso corrisponde alla liquidità) di €1.000.
-\\\\Tuttavia, se un contadino volesse scambiare le sue patate grazie al contenitore, potrebbe ricevere in cambio meno mele rispetto alle patate inviate.
-Questo perché il prezzo della mela potrebbe aumentare, e dunque per bilanciare il contenitore il prezzo delle patate dovrà di conseguenza diminuire.
-\\Allo stesso modo, se un contadino volesse scambiare le proprie mele, riceverebbe più patate di quelle che avrebbe ricevuto inizialmente, considerato l'aumento del prezzo della mela rispetto alle patate.
-\\\\Nella realtà dei fatti, questo contenitore magico è conosciuto come \textit{pool di liquidità}.
+\begin{equation}
+x * y = k
+\label{eqn:const_prod_f}
+\end{equation}
+dove:
+\begin{conditions}
+ x & numero di mele nel contenitore \\
+ y & numero di patate nel contenitore \\  
+ k & valore costante \\
+\end{conditions}
+
+\noindent \\In genere la costante $k$ è detta \textbf{liquidità} del contenitore.
+
+\begin{figure}[H]
+  \includegraphics[scale=0.6]{const_prod.png}
+  \centering
+  \caption{Grafico della Constant Product Formula applicata all'esempio dei contadini}
+  \label{fig:const_prod}
+\end{figure}
+
+\noindent\\Inizialmente il contenitore sarà perfettamente bilanciato, per esempio con 500 mele e 500 patate corrispondente ad una liquidità ($k$) pari a 250.000.
+
+\subsection{Scambi nel contenitore}
+
+\\\\Immaginiamo ora che un contadino voglia scambiare le sue patate per delle mele grazie al contenitore.
+Poniamo che il numero di patate offerte dal contadino sia pari a \textit{70}.
+Ricordando che la costante $k$ deve sempre corrispondere a \textit{250.000}, il calcolo per la quantità di mele che dovrà essere presente nel contenitore è:\\
+
+
+\begin{equation}
+M_{n} = \frac{k}{P_{0}_ + P_{1}}
+\label{eqn:nuove_mele}
+\end{equation}
+dove:
+\begin{conditions}
+ M_{n} & nuova quantità di mele nel contenitore \\
+ P_{0} & quantità iniziale di patate nel contenitore \\  
+ P_{1} & quantità di patate inviate
+\end{conditions}
+
+\noindent \\\\Questo perché per bilanciare il contenitore mantenendo il valore k costante, il numero di mele deve diminuire, e di conseguenza il prezzo delle mele stesse aumentare.
+Dunque, il nuovo numero di patate nel contenitore corrisponde a \textit{570}, mentre il numero di mele, calcolato mediante la \textbf{formula \ref{eqn:nuove_mele}} è uguale a \textit{438}: di conseguenza il contadino riceverà \textit{500 - 438 = 62 mele}.
+\\Allo stesso modo, se un contadino volesse scambiare le proprie mele, riceverebbe più patate rispetto alle mele inviate, considerato l'aumento del prezzo della mela rispetto alle patate.
+\\\\Nella realtà dei fatti, questo contenitore magico è conosciuto come \textbf{pool di liquidità}.
 
 \section{Pool di liquidità}
 
 È possibile vedere una pool di liquidità come uno spazio in cui i contandini (trader) possono mettere a disposizione la propria liquidità di mele e patate (criptovalute, nello specifico token ERC-20\cite{erc_20}); tali utenti vengono definiti fornitori di liquidità (\textit{liquidity providers, da ora in poi LP}).
 \\\\Come ricompensa per la liquidità fornita, gli \textbf{LP} ricevono commissioni sulle operazioni che avvengono nella pool a cui partecipano. 
-Tali commissioni si applicano sulle singole transazioni effettuate con la liquidità fornita da un LP, e possono variare di percentuale dal 0.01\%\ fino all'1\%\.\\\\Nel caso di Uniswap, gli LP depositano un valore equivalente di due token; per esempio, 50\% ETH e 50\% USDC nella pool ETH/USDC.
+Tali commissioni si applicano sulle singole transazioni effettuate con la liquidità fornita da un LP, e possono variare di percentuale dal 0.01\%\ fino all'1\%\.\\\\Nel caso di Uniswap, gli LP depositano un valore equivalente di due token; per esempio, 50\% ETH e 50\% USDC (una stablecoin che replica il dollaro USA) nella pool ETH/USDC.
 
 
 \section{Protocollo Uniswap v3}
@@ -326,7 +366,113 @@ Contrariamente agli Aggregatori, gli \textbf{Smart Vaults} garantiscono un'alta 
 \\Tuttavia, con l'avvento di blockchain sempre meno costose in termini di gas, è ora possibile utilizzare gli Smart Vaults per integrare facilmente nuovi protocolli e fornire all'utente la possibilità di avere un totale controllo sulle interazioni con essi.
 \\\\Per tali ragioni, il modello a Smart Vault è stato scelto per la realizzazione di Orbit.
 
+\section{Moduli di Orbit}
 
+La prima versione di Orbit rilasciata ad Agosto 2022 presenta 3 caratteristiche principali chiamate \textbf{moduli}: 
+
+\begin{itemize}
+  \item \textbf{Autocompound}
+  \item \textbf{Autorebalance}
+  \item \textbf{Idle liquidity}
+\end{itemize}
+\textbf{\list}
+\noindent I moduli sono delle \textit{opzioni} attivabili su una determinata posizione di Uniswap v3 depositata nel proprio Smart Vault su Orbit. \\Ciascuno di tali moduli è rappresentato da uno smart contract, il quale innescherà delle specifiche \textbf{azioni} sulla base di determinati parametri relativi allo stato della posizione su cui agiscono.
+
+\subsection{Autocompound module}
+
+Il modulo di autocompound è sostanzialmente la traslazione verso il Web3 del \textit{compounding} nella finanza tradizionale. Il compounding si effettua quando un investitore decide di aggiungere gli interessi maturati da un investimento al capitale inizialmente investito, rendendoli a loro volta idonei per generare ulteriore interesse.
+\\\\Nel mondo DeFi gli interessi generati sono le fee generate da una posizione, mentre il capitale investito è la liquidità messa a disposizione in una determinata pool.
+\\Ricordiamo che i LP guadagnano fee su Uniswap v3 mentre i token delle posizioni da loro aperte si trovano in un determinato range di prezzo.
+Il moduli di autocompound reinveste periodicamente le fee generate; tale operazione viene effettuata da bot esterni chiamati \textbf{keepers}.
+\\Gli utenti più esperti possono scegliere delle soglie, superati le quali debba essere azionato il modulo di Autocompound, provocando il reinvestimento delle fee.
+Per esempio, un utente può scegliere di innescare il modulo solo quando il valore delle fee generate supera il \textbf{5\%} del totale della liquidità investita nella posizione.
+\\Nella tabella sottostante si può notare di quanto possa aumentare il \textbf{ritorno generato} con il modulo di Autocompound attivo (i dati sono presi da uno studio effettuato da Five Elements Labs): 
+\\\\
+
+\begin{center}
+\begin{tabular}{ |p{5cm}|p{5cm}|p{2cm}| }
+ \hline
+ \multicolumn{3}{|c|}{Ritorno in percentuale} \\
+ \hline
+ Autocompund attivato& Autocompound disattivato &Differenza\\
+ \hline
+ 5,00\%   & 4,89\%    &0,11\%  \\
+ \hline
+ 10,00\%   & 9,57\%    &0,43\%  \\
+ \hline
+ 15,00\%   & 14,06\%    &0,94\%  \\
+ \hline
+ 20,00\%   & 18,37\%    &1,63\%  \\
+ \hline
+ 30,00\%   & 26,50\%    &3,50\%  \\
+ \hline
+ 40,00\%   & 34,10\%    &5,90\%  \\
+ \hline
+ 60,00\%   & 47,93\%    &12,07\%  \\
+ \hline
+\end{tabular}
+\end{center}
+\\\\
+
+\noindent \\Il modulo di autocompound presenta dunque un vantaggio per l'utente \textbf{incrementale}: più la posizione genera fee, più l'uso del modulo diventerà redditizio.
+\subsection{Autorebalance module}
+
+I successivi due moduli vertono su una delle maggior complicazioni di Uniswap V3: la \textbf{liquidità inattiva}.
+\\Nel momento in cui questa Tesi sta venendo scritta, il \textbf{TVL} (\textit{Total Value Locked}, ossia capitale in DeFi) è pari a circa \textbf{\$10 miliardi}, rendendo la liquidità inattiva un problema non indifferente.\\
+\\Il modulo di \textbf{autorebalance} permette di spostare il range di prezzo di una posizione che si trova fuori dal range di guadagno effettivo, centrandolo sul prezzo attuale del rapporto della coppia dei due Token presenti nella pool.
+\\Nella figura \ref{fig:in_range}, si può notare come il prezzo attuale, rappresentato dallo spillo viola, si trovi attualmente all'interno del range verde. In questo caso, il proprietario della posizione sta guadagnando delle fee.
+
+
+\begin{figure}[H]
+  \includegraphics[scale=0.3]{in_range.png}
+  \centering
+  \caption{Esempio di posizione in range - Orbit Documentation}
+  \label{fig:in_range}
+\end{figure}
+
+\noindent \\Possiamo invece trovarci nella situazione della figura \ref{fig:oor}, dove il prezzo attuale del rapporto della coppia dei Token della pool si trova al di fuori del range scelto inizialmente dall'utente.\\
+
+\begin{figure}[H]
+  \includegraphics[scale=0.3]{oor.png}
+  \centering
+  \caption{Esempio di posizione fuori range - Orbit Documentation}
+  \label{fig:oor}
+\end{figure}
+
+\noindent \\In questo caso, una volta superata la soglia delimitata dai due segmenti $d$, estensioni del \textbf{lower e upper bound} dell'intervallo di prezzo, il modulo di autorebalance viene innescato, impostando un nuovo range di prezzo \textbf{centrato sul prezzo attuale} (figura \ref{fig:new_range}).
+In questo modo gli utenti non smettono mai di guadagnare fee, nonostante il prezzo possa variare molto rispetto al range scelto alla creazione della posizione.
+
+\begin{figure}[H]
+  \includegraphics[scale=0.3]{new_range.png}
+  \centering
+  \caption{Nuovo range dopo l'attivazione del modulo di autorebalance - Orbit Documentation}
+  \label{fig:new_range}
+\end{figure}
+
+\subsection{Idle liquidity module}
+
+L'ultimo modulo di Orbit, \textbf{Idle liquidity module}, affronta sempre il problema della liquidità inattiva, ma adottando una diversa strategia rispetto all'autorebalance.
+\\Il suo innesco avviene comunque quando il prezzo attuale del rapporto dei due token in una pool si trova al di fuori del range scelto per una determinata posizione. \\Quando ciò accade, la liquidità della posizione viene trasferita su altri protocolli (al di fuori di Uniswap V3), come per esempio \textbf{Aave Protocol}, attualmente implementato su Orbit (figura \ref{fig:aave}).
+
+\begin{figure}[H]
+  \includegraphics[scale=0.3]{aave.png}
+  \centering
+  \caption{Liquidità inattiva spostata su Aave - Orbit Documentation}
+  \label{fig:aave}
+\end{figure}
+
+
+\noindent \\Tali protocolli permettono all'utente di usufruire di modi alternativi di guadagnare fee sulla liquidità fornita, così da rendere proficua la posizione nonostante si trovi al di fuori dell'intervallo prestabilito.
+Una volta che il prezzo torna nell'intervallo scelto dall'utente, la posizione sugli altri protocolli viene chiusa, e nuovamente aperta su Uniswap V3, come mostrato in figura \ref{fig:uniswap_back}.
+
+\begin{figure}[H]
+  \includegraphics[scale=0.3]{uniswap_back.png}
+  \centering
+  \caption{Posizione chiusa su Aave ma riaperta su Uniswap V3 - Orbit Documentation}
+  \label{fig:uniswap_back}
+\end{figure}
+
+\noindent \\Per ovvie ragioni logistiche, il modulo di autorebalance e quello di idle liquidity sono \textit{mutualmente esclusivi}, dunque non possono essere contemporaneamente attivi su una stessa posizione.
 \chapter{Tecnologie utilizzate nello sviluppo di Orbit}
 
 Orbit è una piattaforma che prende forma nel mondo del Web3, pertanto per la sua realizzazione sono state richieste tecnologie specifiche di questo emergente settore.
