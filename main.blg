@@ -1,0 +1,138 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: unsrtnat.bst
+Database file #1: bibliografia.bib
+Warning--empty journal in blockchain
+Warning--empty year in blockchain
+Warning--empty year in blockchain
+Warning--empty journal in web3_dev
+Warning--empty year in web3_dev
+Warning--empty year in web3_dev
+Warning--empty journal in ethereum
+Warning--empty year in ethereum
+Warning--empty year in ethereum
+Warning--empty journal in bitcoin
+Warning--empty year in bitcoin
+Warning--empty year in bitcoin
+Warning--empty journal in smartcontracts
+Warning--empty year in smartcontracts
+Warning--empty year in smartcontracts
+Warning--empty journal in web2_web3
+Warning--empty year in web2_web3
+Warning--empty year in web2_web3
+Warning--empty journal in wallet
+Warning--empty year in wallet
+Warning--empty year in wallet
+Warning--empty journal in uniswap
+Warning--empty year in uniswap
+Warning--empty journal in amm
+Warning--empty year in amm
+Warning--empty journal in order_book
+Warning--empty year in order_book
+Warning--empty year in order_book
+Warning--empty journal in matching
+Warning--empty year in matching
+Warning--empty journal in liquidity_pool
+Warning--empty year in liquidity_pool
+Warning--empty journal in erc_20
+Warning--empty year in erc_20
+Warning--empty year in erc_20
+Warning--empty journal in erc_721
+Warning--empty year in erc_721
+Warning--empty year in erc_721
+Warning--empty journal in v2_waste
+Warning--empty year in v2_waste
+Warning--empty year in v2_waste
+Warning--empty journal in concentrated_liquidity
+Warning--empty year in concentrated_liquidity
+Warning--empty journal in orbit_website
+Warning--empty year in orbit_website
+Warning--empty year in orbit_website
+Warning--empty journal in gas
+Warning--empty year in gas
+Warning--empty year in gas
+Warning--empty journal in polygon
+Warning--empty year in polygon
+Warning--empty year in polygon
+Warning--empty journal in aggregator
+Warning--empty year in aggregator
+Warning--empty year in aggregator
+Warning--empty journal in smart_vault
+Warning--empty year in smart_vault
+Warning--empty year in smart_vault
+Warning--empty journal in js
+Warning--empty year in js
+Warning--empty year in js
+Warning--empty journal in react
+Warning--empty year in react
+Warning--empty year in react
+Warning--empty journal in spa
+Warning--empty year in spa
+Warning--empty year in spa
+Warning--empty journal in react_2021
+Warning--empty year in react_2021
+Warning--empty year in react_2021
+Warning--empty journal in tailwind
+Warning--empty year in tailwind
+Warning--empty year in tailwind
+Warning--empty journal in ethers
+Warning--empty year in ethers
+Warning--empty year in ethers
+Warning--empty journal in metamask
+Warning--empty year in metamask
+Warning--empty year in metamask
+Warning--empty journal in walletconnect
+Warning--empty year in walletconnect
+Warning--empty year in walletconnect
+Warning--empty journal in solidty
+Warning--empty year in solidty
+Warning--empty year in solidty
+Warning--empty journal in hardhat
+Warning--empty year in hardhat
+Warning--empty year in hardhat
+Warning--empty journal in audit
+Warning--empty year in audit
+Warning--empty year in audit
+You've used 32 entries,
+            2481 wiz_defined-function locations,
+            689 strings with 8254 characters,
+and the built_in function-call counts, 9074 in all, are:
+= -- 784
+> -- 240
+< -- 32
++ -- 135
+- -- 68
+* -- 553
+:= -- 1472
+add.period$ -- 133
+call.type$ -- 32
+change.case$ -- 64
+chr.to.int$ -- 29
+cite$ -- 123
+duplicate$ -- 576
+empty$ -- 897
+format.name$ -- 104
+if$ -- 1853
+int.to.chr$ -- 4
+int.to.str$ -- 33
+missing$ -- 32
+newline$ -- 205
+num.names$ -- 96
+pop$ -- 379
+preamble$ -- 1
+purify$ -- 32
+quote$ -- 0
+skip$ -- 284
+stack$ -- 0
+substring$ -- 64
+swap$ -- 37
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 224
+warning$ -- 91
+while$ -- 64
+width$ -- 0
+write$ -- 433
+(There were 91 warnings)
