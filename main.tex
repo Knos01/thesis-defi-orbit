@@ -226,7 +226,7 @@ dove:
 \noindent \\In genere la costante $k$ è detta \textbf{liquidità} del contenitore.
 
 \begin{figure}[H]
-  \includegraphics[scale=0.6]{const_prod.png}
+  \includegraphics[scale=0.40]{const_prod.png}
   \centering
   \caption{Grafico della Constant Product Formula applicata all'esempio dei contadini}
   \label{fig:const_prod}
@@ -552,6 +552,50 @@ Per esempio, sono state realizzate specifiche azioni per compilare il codice deg
 
 Durante i mesi di sviluppo di Orbit, sono state effettuate numerose ricerche da parte della squadra di sviluppo di Five Elements Labs, in modo tale da scegliere un'architettura e dei \textbf{design patterns} quanto più sicuri e aggiornati con le ultime tecnologie del mondo DeFi e Smart Contracts.
 
+\section{Principi fondamentali}
+
+L'architettura su cui si basa Orbit segue due principi fondamentali: \textbf{composability} (componibilità) e \textbf{upgradability} (aggiornabilità).
+\\\\Il primo principio afferma che i componenti che formano un sistema software debbano essere realizzati in modo tale da poter essere riutilizzati per costruire nuove applicazioni. Un buon esempio di questo principio è quello dei mattoncini Lego: gli Smart Contracts di Orbit sono dei singoli mattoncini che combinati tra loro possono costruire strutture sempre più complesse, senza la necessità di essere riscritti da zero.
+\\\\Il secondo principio invece, va contro la natura stessa degli Smart Contracts, i quali per definizione non sono aggiornabili. Tuttavia, attraverso degli opportuni Design Patterns, è possibile trovare un modo per aggiornare i contratti abbattendo i costi di distribuzione sulla blockchain (approfondimento alla sezione \ref{registry}).
+
+\section{Diamond Pattern}
+
+L'architettura presenta numerosi Smart Contracts, ognuno di essi adibito ad una specifica funzione all'interno della suite.
+\\Il design pattern utilizzato è chiamato \textbf{Diamond Pattern}\cite{diamond} (figura \ref{fig:contracts_flow}) o standard EIP-2535, ossia un approccio che consiste nella costruzione di un sistema di Smart Contract \textbf{modulari}, \textbf{estendibili} ed \textbf{aggiornabili}, con un spazio a disposizione \textit{virtualmente infinito}.
+\\Nel dettaglio, un \textbf{Diamond} è un contratto con funzioni esterne messe a disposizione da particolari contratti chiamati \textbf{facets}. Tali contratti vanno visti come entità separate, indipendenti tra loro ma che condividono funzioni, librerie e variabili di stato. 
+
+
+
+\begin{figure}[H]
+  \includegraphics[scale=0.40]{contracts_flow.png}
+  \centering
+  \caption{Architettura degli Smart Contracts di Orbit}
+  \label{fig:contracts_flow}
+\end{figure}
+
+\subsection{Vantaggi del Diamond}
+
+\subsection{Funzioni di fallback}
+
+\subsection{Aggiornamento e eliminazione di funzioni}
+
+\subsection{Position Manager}
+
+Il contratto che rappresenta lo Smart Vault creato dall'utente è chiamato \textbf{Position Manager}. Il suo compito principale è di gestire le posizione di Uniswap V3 appartenenti all'utente, salvando all'interno di una struttura dati quali moduli (\textit{autocompound, autorebalance, idle liquidity}) sono stati attivati per una relativa posizione.
+L'unico punto di ingresso lato utente è rappresentato dall'interazione diretta con un contratto chiamato "\textit{PositionManagerFactory}", il quale si occupa della creazione dei Position Manager.
+\\Una parte
+
+\subsection{Actions}
+
+\subsection{Moduli}
+
+\subsection{Helpers}
+
+\section{Sicurezza}
+
+\subsection{Registry patterns} \label{registry}
+
+\subsection{Timelock}
 
 \section{Audit}
 
@@ -566,39 +610,6 @@ La dApp di Orbit è stata costruita prioritizzando la sicurezza dei propri utent
 \end{figure}
 
 \noindent \\Come team di sviluppo, abbiamo risolto i 39 problemi trovati da ByteRocket, ottenendo una certificazione di completamento dell'Audit, al fine di garantire agli utenti di Orbit un elevato grado di sicurezza ed affidabilità.
-
-\section{Principi fondamentali}
-
-L'architettura su cui si basa Orbit segue due principi fondamentali: \textbf{composability} (componibilità) e \textbf{upgradability} (aggiornabilità).
-\\\\Il primo principio afferma che i componenti che formano un sistema software debbano essere realizzati in modo tale da poter essere riutilizzati per costruire nuove applicazioni. Un buon esempio di questo principio è quello dei mattoncini Lego: gli Smart Contracts di Orbit sono dei singoli mattoncini che combinati tra loro possono costruire strutture sempre più complesse, senza la necessità di essere riscritti da zero.
-\\\\Il secondo principio invece, va contro la natura stessa degli Smart Contracts, i quali per definizione non sono aggiornabili. Tuttavia, attraverso degli opportuni Design Patterns, è possibile trovare un modo per aggiornare i contratti abbattendo i costi di distribuzione sulla blockchain (approfondimento alla sezione \ref{registry}).
-
-\section{Design Patterns dell'architettura}
-
-L'architettura di Orbit (figure \ref{fig:architecture}) presenta numerosi Smart Contracts, ognuno di essi adibito ad una specifica funzione all'interno della suite. 
-
-\begin{figure}[H]
-  \includegraphics[scale=0.30]{architecture.png}
-  \centering
-  \caption{Architettura degli Smart Contracts di Orbit}
-  \label{fig:architecture}
-\end{figure}
-
-\subsection{Position Manager}
-
-Il contratto che rappresenta lo Smart Vault creato dall'utente è chiamato \textbf{Position Manager}. Il suo compito principale è il gestire le posizione di Uniswap V3 appartenenti all'utente, salvando all'interno di una struttura dati quali moduli sono stati attivati per una relativa posizione.
-
-\subsection{Actions}
-
-\subsection{Moduli}
-
-\subsection{Helpers}
-
-\section{Sicurezza}
-
-\subsection{Registry patterns} \label{registry}
-
-\subsection{Timelock}
 
 
 \chapter{Future implementazione all'interno di Orbit}
