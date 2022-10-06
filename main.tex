@@ -561,8 +561,7 @@ L'architettura su cui si basa Orbit segue due principi fondamentali: \textbf{com
 \section{Diamond Pattern}
 
 L'architettura presenta numerosi Smart Contracts, ognuno di essi adibito ad una specifica funzione all'interno della suite.
-\\Il design pattern utilizzato è chiamato \textbf{Diamond Pattern}\cite{diamond} (figura \ref{fig:contracts_flow}) o standard EIP-2535, ossia un approccio che consiste nella costruzione di un sistema di Smart Contract \textbf{modulari}, \textbf{estendibili} ed \textbf{aggiornabili}, con un spazio a disposizione \textit{virtualmente infinito}.
-\\Nel dettaglio, un \textbf{Diamond} è un contratto con funzioni esterne messe a disposizione da particolari contratti chiamati \textbf{facets}. Tali contratti vanno visti come entità separate, indipendenti tra loro ma che condividono funzioni, librerie e variabili di stato. 
+\\Il design pattern utilizzato è chiamato \textbf{Diamond Pattern}\cite{diamond} (figura \ref{fig:contracts_flow}) o standard EIP-2535, ossia un approccio che consiste nella costruzione di un sistema di Smart Contract \textbf{modulari}, \textbf{estendibili} ed \textbf{aggiornabili}, contenuti in  un spazio di memoria \textit{virtualmente infinito}.
 
 
 
@@ -573,17 +572,48 @@ L'architettura presenta numerosi Smart Contracts, ognuno di essi adibito ad una 
   \label{fig:contracts_flow}
 \end{figure}
 
+
 \subsection{Vantaggi del Diamond}
+
+Il Diamond Pattern è uno standard recente, che ha trovato largo uso nel mondo web3 grazie ai numerosi vantaggi presenti nell'architettura.
+\\Il vantaggio principale sta nello sfruttare un \textbf{singolo smart contract} (chiamato Diamond), dunque un solo indirizzo ethereum, nel quale si trovano le funzionalità alle quali possono accedere tutti i contratti presenti nell'architettura.
+\\Inoltre, tale contratto non presenta la canonica limitazione di dimensione di \textbf{24KB}, rendendo lo spazio a sua disposizione \textbf{virtualmente infinito}. 
+\\Non meno importante è la sua \textbf{modificabilità}: tutte le funzioni esterne presenti nel Diamond possono essere modificate, eliminate o aggiunte in un qualsiasi momento senza dover distribuire nuovamente il contratto sulla blockchain, evitando di dover utilizzare un nuovo indirizzo.
+
+\subsection{Creazione, aggiornamento e eliminazione di funzioni}
+
+
+\\Il \textbf{Diamond Pattern} possiede una forte \textbf{modularità}. \\Al suo interno vi sono funzioni "\textit{esterne}", messe a disposizione da ulteriori contratti stateless chiamati \textbf{Facets}.
+\\In questo caso, vi è un chiaro parallelismo tra il mondo reale e le nomenclature utilizzate nell'architettura: nel settore industriale i diamanti vengono tagliati creando delle sfaccettature (facets), proprio come nel Diamond Pattern sono "tagliati" aggiungendo, modificando e eliminando funzioni dai Facets.
+\\Quando un Facet viene distribuito sulla blockchain, una o più tra le sue funzioni vengono aggiunte ad uno o più Diamond. Essendo un contratto stateless, non può contenere dati (spazio di \textbf{storage}) ma può leggere e scrivere su differenti Diamond. 
+\\I contratti Facet vanno visti come entità separate, indipendenti tra loro ma che condividono l'accesso alle stesse funzioni, librerie e variabili di stato.
+
 
 \subsection{Funzioni di fallback}
 
-\subsection{Aggiornamento e eliminazione di funzioni}
+Quando una funzione esterna è chiamata su un Diamond, viene eseguita una particolare funzione detta di \textbf{fallback}. Tale funzione determina quale facet verrà chiamato, in base ai primi \textit{4 bytes di dati}, detti \textit{function selector} (similmente ad il "Opcode" del linguaggio macchina, figura \ref{fig:facet}), per poi eseguire la funzione richiesta tramite il metodo \textbf{delegatecall}.
+\\La funzione di fallback e il metodo delegatecall permettono ad un Diamond di eseguire una funzione di un Facet come se fosse implementata nel Diamond stesso. 
+\\Inoltre è possibile chiamare differenti Facet in una singola transazione, risparmiando notevoli quantità di Gas, raggruppando dati e funzionalità nel singolo Diamond.
+https://www.overleaf.com/project/62bcc1654ca61aaea5de0593
+\begin{figure}[H]
+  \includegraphics[scale=0.35]{facet.png}
+  \centering
+  \caption{Mapping tra function selector e funzioni dei contratti Facet - EIP-2535\cite{diamond}}
+  \label{fig:facet}
+\end{figure}
+
+
+\subsection{Storage}
+
+Il sistema che gestisce lo spazio di archiviazione (storage) di Solidity non supporta contratti proxy come il Diamond. Per tale ragione, è necessario implementare uno storage associato al Diamond, appositamente creato per interagire con i Facet. 
+\\Quest'ultimi possono condividere l'accesso alle variabili di stato dello storage, usando le stesse strutture dati nelle stesse posizioni delle celle di memoria. In questo modo i Facet sono entità separate ma con una memoria condivisa, disponibili in lettura e scrittura in qualsiasi momento dall'intera architettura.
+
+
 
 \subsection{Position Manager}
 
 Il contratto che rappresenta lo Smart Vault creato dall'utente è chiamato \textbf{Position Manager}. Il suo compito principale è di gestire le posizione di Uniswap V3 appartenenti all'utente, salvando all'interno di una struttura dati quali moduli (\textit{autocompound, autorebalance, idle liquidity}) sono stati attivati per una relativa posizione.
 L'unico punto di ingresso lato utente è rappresentato dall'interazione diretta con un contratto chiamato "\textit{PositionManagerFactory}", il quale si occupa della creazione dei Position Manager.
-\\Una parte
 
 \subsection{Actions}
 
