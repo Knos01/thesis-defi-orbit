@@ -2,6 +2,7 @@
 
 
 \usepackage[italian]{babel}
+\usepackage{todonotes}
 
 % Set page size and margins
 % Replace `letterpaper' with `a4paper' for UK/EU standard size
@@ -96,26 +97,16 @@
 \tableofcontents
 
 
-\begin{enumerate}
-\item Introduzione alla Finanza Decentralizzata
-\item AMM e pool di liquidità
-\item Complessità di Uniswap v3
-\item Orbit, piattaforma per automatizzare e ottimizzare strategie defi
-\item Utilizzo degli smart vaults
-\item Moduli di Orbit: autocompound, rebalance and idle liquidity
-\item Tecnologie utilizzate nello sviluppo di Orbit
-\item Architettura degli smart contracts
-\item Future implementazioni all'interno di Orbit
-\end{enumerate}
-
 
 
 
 
 \chapter{Introduzione}
-Il tema centrale di questa Tesi di Laurea è la \textbf{finanza decentralizzata}.\\ In particolare, si approfondirà il ruolo che la blockchain ha in questo settore, fornendo esempi di un prodotto software concretamente sviluppato durante il mio  \textit{Project Work}, svolto presso l'azienda \textit{Five Elements Labs Srl}.
-\\\\Inoltre, verranno approfonditi i concetti di \textit{pool di liquidità}, \textit{automated market maker(AMM)} e \textit{strategie multiple} su Uniswap v3.
+\todo{prima frase forse non adatta}
+\noindent Il tema centrale di questa Tesi di Laurea è la \textbf{finanza decentralizzata}.\\ In particolare, si approfondirà il ruolo che la blockchain ha in questo settore, presentando un prodotto software concretamente sviluppato durante il mio  \textit{Project Work}, svolto presso l'azienda \textit{Five Elements Labs Srl}.
+\\\\Inoltre, verranno approfonditi i concetti di \textit{pool di liquidità}, \textit{automated market maker(AMM)} e \textit{strategie multiple} su Uniswap V3.
 
+\todo{pensare ad un titolo più adeguato per la sezione}
 \section{Un breve sguardo alla tecnologia}
 
 Alla base di tutti i protocolli e prodotti software analizzati in questa Tesi, vi è un minimo comune denominatore che prende il nome di \textbf{blockchain}\cite{blockchain}.
@@ -128,11 +119,13 @@ Alla base di tutti i protocolli e prodotti software analizzati in questa Tesi, v
   \item \textbf{sicurezza} - la crittografia asimmetrica utilizzata nella rete garantisce invio e ricezione di transazioni in modo sicuro, senza bisogno di intermediari esterni
 \end{itemize}
 
-\noindent Questa recente tecnologia è oggi in \textbf{piena crescita}: nonostante il mercato finanziario digitale non sia nelle migliori condizioni, lascia spazio a molte aziende e sviluppatori indipendenti per costruire prodotti innovativi e ad altissimo potenziale.
+\noindent Questa recente tecnologia è oggi in \textbf{piena crescita}: vi sono numerose aziende e sviluppatori indipendenti che costruiscono prodotti innovativi e ad altissimo potenziale, basati sulla blockchain.
+
 
 \subsection{Le dimensioni del mercato attuale}
+\todo{sezione troppo orientata ad economia?}
 
-Nel 2021, secondo un report di \textbf{Electric Capital}\cite{web3_dev} mostrato nell'immagine \ref{fig:web3_dev} è stata raggiunto un nuovo record di \textbf{18.000 sviluppatori attivi al mese} nello sviluppo di software basati su blockchain. \\Si stima inoltre che più del \textbf{65\%} degli sviluppatori blockchain abbia iniziato a lavorare nel 2021 in questo nuovo settore, con un aumento di \textbf{34.000} persone, il più alto nella storia.
+\noindent Nel 2021, secondo un report di \textbf{Electric Capital}\cite{web3_dev} mostrato nell'immagine \ref{fig:web3_dev} è stata raggiunto un nuovo record di \textbf{18.000 sviluppatori attivi al mese} nello sviluppo di software basati su blockchain. \\Si stima inoltre che più del \textbf{65\%} degli sviluppatori blockchain abbia iniziato a lavorare nel 2021 in questo nuovo settore, con un aumento di \textbf{34.000} persone, il più alto nella storia.
 
 \begin{figure}[H]
   \includegraphics[scale=0.3]{web3_dev.png}
@@ -141,6 +134,7 @@ Nel 2021, secondo un report di \textbf{Electric Capital}\cite{web3_dev} mostrato
   \label{fig:web3_dev}
 \end{figure}
 
+\todo{personalmente credo da cambiare con qualcos'altro}
 \noindent Personalmente credo che questo forte aumento di sviluppatori sia dovuto allo \textbf{scoppio} della tecnologia \textbf{NFT} e al rapido crescere del valore delle principali cripto valute, \textbf{Bitcoin} e \textbf{Eth}, che nel 2021 hanno raggiunto il massimo storico, attirando l'attenzione sul mercato e mettendo in luce il potenziale di questa innovativa tecnologia.
 
 \section{Cos'è la Finanza Decentralizzata}
@@ -159,18 +153,22 @@ Ciò incrementa le già prolisse tempistiche burocratiche, oltre ad aggiungere i
 
 \subsection{Applicazioni decentralizzate}
 Gli applicativi software utilizzati in DeFi vengono chiamati \textit{dApps (decentralized applications)}, ovvero particolari prodotti che interagiscono con diverse blockchain. Di tali reti noi considereremo solo quella di \textbf{Ethereum}\cite{ethereum}, nota per la sua flessibilità e accessibilità.\\\\
+\todo{dare più contesto su ethereum}
 La blockchain di Ethereum, a differenza di reti come quella di \textbf{Bitcoin}\cite{bitcoin}, è \textbf{programmabile}; ossia è possibile costruirci sopra e distribuire dApps, rendendo la rete una sorta di gigantesco marketplace in cui trovare servizi finanziari, videogiochi, social network e diverse altre applicazioni.
-\\Su tale blockchain risiedono dei particolari programmi denominati \textit{Smart Contracts}\cite{smartcontracts}, i quali si occupano di garantire sicurezza, trasparenza e irreversibilità delle operazioni avvenute sulla blockchain.\\
+\todo{cosa fanno gli smart contract, approfondisco}
+\\Su tale blockchain risiedono dei particolari programmi denominati \textit{Smart Contracts}\cite{smartcontracts}, i quali sono costruiti come un insieme di dati e funzioni, che risiedono ad uno specifico indirizzo sulla rete Ethereum.
+
+\todo{Spiego EVM}
 
 \subsection{Accesso alle dApps}
 
-Il concetto di login ideato nel web2, tipicamente caratterizzato dall'inserimento di un'email e una password, viene sorpassato da una nuova autenticazione del \textbf{Web3}\cite{web2_web3}: attraverso il proprio \textit{portafoglio digitale} (da ora in poi, wallet \cite{wallet}) è possibile accedere al proprio account e gestire i propri assets digitali, eventualmente mettendoli a disposizione della dApp a cui si è connessi.
+Il concetto di login ideato nel web tradizionale (noto anche come Web2), tipicamente caratterizzato dall'inserimento di un'email e una password, viene sorpassato da una nuova autenticazione del \textbf{Web3}\cite{web2_web3}: attraverso il proprio \textit{portafoglio digitale} (da ora in poi, wallet \cite{wallet}) è possibile accedere al proprio account e gestire i propri assets digitali, eventualmente mettendoli a disposizione della dApp a cui si è connessi.
 \\\\I wallet presentano il vantaggio di non dover fornire nomi, indirizzi fisici, email o altre informazioni personali, garantendo la riservatezza dei propri dati; basta creare un wallet per avere immediato accesso alle piattaforme, senza registrazioni.
 
 
 
 \subsection{Operazioni in DeFi}
-
+\todo{non sono operazioni SOLO in DeFi, si può spiegare meglio}
 Ogni operazione nella DeFi viene detta \textbf{transazione}. Una transazione è permanentemente salvata sui registri della blockchain, rendendo ogni singola operazione, associata ad un identificativo, consultabile in qualsiasi momento da qualsiasi persona.
 \\Tale trasparenza viene difficilmente concessa dalle banche, ponendo la DeFi come un sistema aperto e rintracciabile.
 
@@ -182,10 +180,12 @@ In qualsiasi momento un utente può trasferire i propri assets digitali, senza d
 
 \chapter{Uniswap, piattaforma di Liquidity Providing}
 
+\todo{intro da rivedere}
 Avendo approfondito cosa è la DeFi, quali sono le sue caratteristiche e i principali vantaggi, ritengo necessario concentrarsi su quali sono i prodotti "dApps" che hanno messo le basi per il lavoro svolto durante il mio Project Work.
 
 \section{Uniswap}
 
+\todo{intro su uniswap da rivedere}
 Innanzitutto, è bene distinguere la piattaforma Uniswap\cite{uniswap} dall'omonimo protocollo.
 \\La dApp di Uniswap (conosciuta come Uniswap Interface) è una piattaforma che permette agli utenti l'interazione con il protocollo Uniswap.
 \\\\Quest'ultimo è una suite di Smart Contracts, per definizione persistenti e non aggiornabili, che insieme formano un \textbf{Automated Market Maker} (da ora in poi AMM)\cite{amm}.
@@ -193,6 +193,7 @@ Innanzitutto, è bene distinguere la piattaforma Uniswap\cite{uniswap} dall'omon
 \section{Scambi nei mercati tradizionali}
 
 La maggior parte dei mercati tradizionali ad accesso pubblico utilizza ciò che viene definito \textit{Order Book}\cite{order_book}, ossia un elenco degli ordini di acquisto e vendita attualmente aperti per un asset, organizzati per prezzo.
+\todo{non spiego cosa sia un asset}
 \\Sostanzialmente, un \textit{sistema di corrispondenza}\cite{matching} si occupa di abbinare gli ordini di acquisto con quelli di vendita, usando l'order book per eseguire le operazioni tra i partecipanti dello scambio.
 
 
@@ -264,28 +265,29 @@ Dunque, il nuovo numero di patate nel contenitore corrisponde a \textit{570}, me
 Tali commissioni si applicano sulle singole transazioni effettuate con la liquidità fornita da un LP, e possono variare di percentuale dal 0.01\%\ fino all'1\%\.\\\\Nel caso di Uniswap, gli LP depositano un valore equivalente di due token; per esempio, 50\% ETH e 50\% USDC (una stablecoin che replica il dollaro USA) nella pool ETH/USDC.
 
 
-\section{Protocollo Uniswap v3}
+\section{Protocollo Uniswap V3}
 
-Uniswap v3 è l'ultima versione del protocollo rilasciata da Uniswap nel maggio 2021.\\ Tale protocollo definisce le funzionalità della suite di smart contracts con cui gli utenti interagiscono, introducendo importanti novità rispetto al suo predecessore, v2.
+Uniswap V3 è l'ultima versione del protocollo rilasciata da Uniswap nel maggio 2021.\\ Tale protocollo definisce le funzionalità della suite di smart contracts con cui gli utenti interagiscono, introducendo importanti novità rispetto al suo predecessore, V2.
 
 \subsection{Posizioni}
 
 Utilizzando l'interfaccia Uniswap, gli utenti possono connettere il loro wallet personale per mettere a disposizione un certo ammontare di liquidità all'interno di una pool.
+\todo{equa proporzione, come mai?}
 Tale liquidità, come spiegato in precedenza, dovrà mantenere un'equa proporzione tra i due asset messi a disposizione: tale operazione viene definita come \textit{apertura di una \textbf{posizione}} (o in inglese, position minting).
-\\\\Su Uniswap v3, le posizioni vengono rappresentate mediante NFT (ERC-721\cite{erc_721}), i quali certificano un determinato wallet, in questo caso chi effettua il minting, come proprietario della posizione.
+\\\\Su Uniswap V3, le posizioni vengono rappresentate mediante NFT (ERC-721\cite{erc_721}), i quali certificano un determinato wallet, in questo caso chi effettua il minting, come proprietario della posizione.
 
-\subsection{Complicazioni di Uniswap v2}
+\subsection{Complicazioni di Uniswap V2}
 
-\\\\In precedenza, nella v2 di Uniswap, i LP potevano mettere a disposizione i propri asset per scambi \textbf{a qualsiasi intervallo di prezzo}.
-\\\\Consideriamo che io, trader che utilizza Uniswap, voglia mettere a disposizione due miei asset chiamati token $A$ e token $B$.
-Ricordando che l'intervallo di prezzo che scelgo per aprire una posizione è sempre il prezzo di $A$ rispetto al prezzo di $B$ ($A$ \textbf{su} $B$), decido di scegliere un range che copra tutti i prezzi possibili.\\
-In questo modo non vi è alcuna perdita di liquidità, portando però un importante svantaggio: la maggior parte della liquidità non viene mai utilizzata negli scambi.
-\\\\Provando a considerare una pool contenente una coppia di due stable coins, ossia token il cui prezzo rimane relativamente costante nel tempo, possiamo assumere che la liquidità al di fuori del tipico intervallo di prezzo dei suddetti stable coins non verrebbe mai toccata.
-\\\\Per esempio in Uniswap v2 la coppia DAI/USDC (\textbf{entrambi stable coins dal valore di circa \$\01}) utilizza circa il 0.50\%\ del capitale totale disponibile per gli scambi all'interno del range tra \$\00.99 e \$\11.01\cite{v2_waste}. Il resto della liquidità è distribuito nella restante fascia di prezzo tra 0 e $\infty$ (escluso il range sopra citato), rendendo quel capitale inutilizzabile (e dunque, non consentendo agli LP di guadagnare commissioni). 
-\\\\Ciò è dovuto al fatto che la liquidità sia uniformemente distribuita in un range di prezzo da 0 a $\infty$, senza che sia \textit{concentrata} nel giusto intervallo: per tale ragione è stato introdotto \textbf{Uniswap v3}.
+\\\\In precedenza, nella V2 di Uniswap, i LP mettevano a disposizione i propri asset per scambi \textbf{a qualsiasi intervallo di prezzo}.
+\\\\Consideriamo che io, trader che utilizza Uniswap V2, voglia mettere a disposizione due miei asset chiamati token $A$ e token $B$.
+Ricordando che l'intervallo di prezzo è sempre il prezzo di $A$ rispetto al prezzo di $B$ ($A$ \textbf{su} $B$), in questa versione del protocollo la liquidità viene uniformemente distribuita su tutti i prezzi possibili.
+\\In questo modo non vi è alcuna perdita di liquidità, portando però un importante svantaggio: la maggior parte della liquidità non viene mai utilizzata negli scambi.
+\\\\Provando a considerare una pool contenente una coppia di due stable coins, ossia token il cui prezzo rimane relativamente costante nel tempo (ad esempio, USDC vale quanto il dollaro americano), possiamo essere certi che la liquidità al di fuori del tipico intervallo di prezzo dei suddetti stable coins non verrebbe mai utilizzata.
+\\\\Per esempio in Uniswap V2 la coppia DAI/USDC (\textbf{entrambi stable coins dal valore di circa \$\01}) utilizza circa il 0.50\%\ del capitale totale disponibile per gli scambi all'interno del range tra \$\00.99 e \$\11.01\cite{v2_waste}. Il resto della liquidità è distribuito nella restante fascia di prezzo tra 0 e $\infty$ (escluso il range sopra citato), rendendo quel capitale inutilizzabile (e dunque, non consentendo agli LP di guadagnare commissioni). 
+\\\\Ciò è dovuto al fatto che la liquidità sia uniformemente distribuita in un range di prezzo da 0 a $\infty$, e non \textit{concentrata} nel giusto intervallo: per tale ragione è stato introdotto \textbf{Uniswap V3}.
 
 \subsection{Liquidità concentrata}
-\\\\Ciò che rende Uniswap v3 un protocollo davvero valido è l'idea della \textit{Liquidità Concentrata}\cite{concentrated_liquidity}. Tale liquidità viene distribuita in un intervallo di prezzo personalizzabile, a scelta dell'utente.
+\\\\Ciò che rende Uniswap V3 un protocollo davvero valido è l'idea della \textit{Liquidità Concentrata}\cite{concentrated_liquidity}. Tale liquidità viene distribuita in un intervallo di prezzo personalizzabile, a scelta dell'utente.
 \\\\Riprendendo l'esempio sopra citato, un trader potrebbe decidere di investire nella pool DAI/USDC, scegliendo come range il più proficuo, ossia quello compreso tra \$\00.99 e \$\11.01.
 In tal modo, la liquidità concentrata garantirà un guadagno superiori di commissioni (da ora in poi fees) sfruttando il capitale messo a disposizione dai LPs.
 
@@ -297,12 +299,12 @@ Per rendere la liquidità concentrata funzionale, lo spazio continuo del prezzo 
 
 \subsection{Swap e Fees}
 
-Il modo più utilizzato per interagire con Uniswap v3 è tramite gli scambi (da ora in poi \textbf{swap}).
+Il modo più utilizzato per interagire con Uniswap V3 è tramite gli scambi (da ora in poi \textbf{swap}).
 Uno swap è relativamente semplice: un utente seleziona un token ERC-20 del quale è proprietario e un token che vorrebbe scambiare per esso. Uniswap venderà il token attualmente in possesso dell'utente, restituendo una quantità proporzionale del token desiderato, sottraendo una \textbf{swap fee}, ossia quella percentuale riconosciuta ai LPs per aver messo a disposizione la loro liquidità con la quale è avvenuto lo scambio.
 \\\\Tuttavia, la transazione potrebbe richiedere alcuni minuti, a seconda della rete su cui avviene, rilevando un fenomeno conosciuto come \textbf{slippage}.
 \\Lo slippage è l'alterazione di prezzo di un token che avviene mentre la transazione è in attesa di essere completata. Tale alterazione ha una soglia di tolleranza dell'1\%\: superata tale soglia l'operazione viene rifiutata e lo swap annullato, onde evitare grosse perdite per l'utente.
 
-\section{Complicazioni di Uniswap v3}
+\section{Complicazioni di Uniswap V3}
 
 Qualora il prezzo di un token dovesse muoversi verso una direzione (di discesa o di salita), il proprietario della posizione si ritroverebbe con un ammontare superiore di uno dei due token rispetto all'altro, in quanto il prezzo dell'uno sull'altro cambierà, fino a quando l'intera liquidità sarà relativa a solo uno dei due asset.
 \\\\Per esempio, se in una pool ETH/USDC il prezzo di ETH dovesse diminuire, la percentuale di liquidità relativa a ETH aumenterebbe, per bilanciare il valore immesso all'interno della posizione stessa.
@@ -325,7 +327,7 @@ Ho avuto l'opportunità di svolgere il mio Project Work per Five Elements Labs, 
 \section{Introduzione ad Orbit}
 
 
-\textbf{Orbit} è una piattaforma di gestione di liquidità nel settore DeFi: ossia un \textbf{layer} che permetta ai propri utenti di automatizzare strategie e di ottimizzare posizioni di liquidità su Uniswap v3.
+\textbf{Orbit} è una piattaforma di gestione di liquidità nel settore DeFi: ossia un \textbf{layer} che permetta ai propri utenti di automatizzare strategie e di ottimizzare posizioni di liquidità su Uniswap V3.
 \\Può essere interpretato come \textbf{un'estensione} del proprio wallet, in grado di gestire gli assets degli utenti per fornire la possibilità di ottenere un ritorno aggiuntivo dalla liquidità concentrata.
 
 \section{Perché nasce Orbit}
@@ -342,7 +344,7 @@ Con il rapido crescere del settore DeFi e del corrispondente ecosistema di proto
 
 \section{Vantaggi per gli utenti}
 
-Automatizzare strategie riguardo posizioni su Uniswap v3 ha un diretto impatto sui \textbf{ritorni generati} da queste ultime.
+Automatizzare strategie riguardo posizioni su Uniswap V3 ha un diretto impatto sui \textbf{ritorni generati} da queste ultime.
 \\La maggior parte dei protocolli presenti sul mercato forniscono ai trader \textbf{strategie attive}, sulle quali è necessario compiere delle complesse scelte conosciute perlopiù da utenti professionisti.
 \\\\Le funzionalità fornite da Orbit permettono agli utenti di creare \textbf{strategie passive}, senza il necessario bisogno di rimanere aggiornati sui protocolli, bensì lasciando alla piattaforma il compito di gestire la propria liquidità.
 \\Inoltre, nella prima versione del protocollo, sarà Orbit ad occuparsi dei costi di gas dovuti alle transazioni rivolte agli smart contract dell'applicazione.
@@ -376,13 +378,13 @@ La prima versione di Orbit rilasciata ad Agosto 2022 presenta 3 caratteristiche 
   \item \textbf{Idle liquidity}
 \end{itemize}
 \textbf{\list}
-\noindent I moduli sono delle \textit{opzioni} attivabili su una determinata posizione di Uniswap v3 depositata nel proprio Smart Vault su Orbit. \\Ciascuno di tali moduli è rappresentato da uno smart contract, il quale innescherà delle specifiche \textbf{azioni} sulla base di determinati parametri relativi allo stato della posizione su cui agiscono.
+\noindent I moduli sono delle \textit{opzioni} attivabili su una determinata posizione di Uniswap V3 depositata nel proprio Smart Vault su Orbit. \\Ciascuno di tali moduli è rappresentato da uno smart contract, il quale innescherà delle specifiche \textbf{azioni} sulla base di determinati parametri relativi allo stato della posizione su cui agiscono.
 
 \subsection{Autocompound module}
 
 Il modulo di autocompound è sostanzialmente la traslazione verso il Web3 del \textit{compounding} nella finanza tradizionale. Il compounding si effettua quando un investitore decide di aggiungere gli interessi maturati da un investimento al capitale inizialmente investito, rendendoli a loro volta idonei per generare ulteriore interesse.
 \\\\Nel mondo DeFi gli interessi generati sono le fee generate da una posizione, mentre il capitale investito è la liquidità messa a disposizione in una determinata pool.
-\\Ricordiamo che i LP guadagnano fee su Uniswap v3 mentre i token delle posizioni da loro aperte si trovano in un determinato range di prezzo.
+\\Ricordiamo che i LP guadagnano fee su Uniswap V3 mentre i token delle posizioni da loro aperte si trovano in un determinato range di prezzo.
 Il moduli di autocompound reinveste periodicamente le fee generate; tale operazione viene effettuata da bot esterni chiamati \textbf{keepers}.
 \\Gli utenti più esperti possono scegliere delle soglie, superati le quali debba essere azionato il modulo di Autocompound, provocando il reinvestimento delle fee.
 Per esempio, un utente può scegliere di innescare il modulo solo quando il valore delle fee generate supera il \textbf{5\%} del totale della liquidità investita nella posizione.
@@ -556,7 +558,7 @@ Durante i mesi di sviluppo di Orbit, sono state effettuate numerose ricerche da 
 
 L'architettura su cui si basa Orbit segue due principi fondamentali: \textbf{composability} (componibilità) e \textbf{upgradability} (aggiornabilità).
 \\\\Il primo principio afferma che i componenti che formano un sistema software debbano essere realizzati in modo tale da poter essere riutilizzabili, per costruire nuove applicazioni. Un buon esempio di questo principio è quello dei mattoncini \textit{Lego}: gli Smart Contracts di Orbit sono dei singoli mattoncini che combinati tra loro possono costruire strutture sempre più complesse, senza la necessità di essere riscritti da zero.
-\\\\Il secondo principio invece, va contro la natura stessa degli Smart Contracts, i quali per definizione non sono aggiornabili. Tuttavia, attraverso degli opportuni Design Patterns, è possibile trovare un modo per aggiornare i contratti abbattendo i costi di distribuzione sulla blockchain (approfondimento nella sezione \ref{registry}).
+\\\\Il secondo principio invece, riguarda l'aggiornabilità di alcune funzionalità degli Smart Contracts. Gli Smart Contracts su \textbf{EVM}\cite{evm} eseguono solo il codice per cui sono programmati al momento del loro \textit{deploy} sulla blockchain. \\Tuttavia, attraverso il Design Pattern adottato da Orbit, è possibile aggiornare alcune loro funzionalità tramite contratti esterni, abbattendo i costi di distribuzione sulla blockchain (approfondimento nella sezione \ref{registry}).
 
 \section{Diamond Pattern}
 
@@ -577,21 +579,20 @@ L'architettura presenta numerosi Smart Contracts, ognuno di essi adibito ad una 
 
 Il Diamond Pattern è uno standard recente, che ha trovato largo uso nel mondo Web3.
 \\Il vantaggio principale sta nello sfruttare un \textbf{singolo smart contract} (chiamato Diamond), dunque un solo indirizzo ethereum, per contenere tutte le funzionalità alle quali possono accedere i contratti presenti nell'architettura.
-\\Inoltre, tale contratto non è soggetto alla canonica limitazione di dimensione di \textbf{24KB}, rendendo lo spazio a sua disposizione \textbf{virtualmente infinito}. 
-\\\\Non meno importante è la sua \textbf{modificabilità}: tutte le funzioni di tipo "\textit{external}", ossia chiamabili da altri contratti, nel Diamond possono essere modificate, eliminate o aggiunte in un qualsiasi momento senza dover distribuire nuovamente il contratto sulla blockchain, evitando costi aggiuntivi e l'utilizzo di un nuovo indirizzo.
+\\Seppur tale contratto sia soggetto alla canonica limitazione di dimensione di \textbf{24KB}, può fare affidamento a codice presente su contratti esterni, rendendo lo spazio a sua disposizione \textbf{virtualmente infinito}. 
+\\\\Non meno importante è la sua \textbf{mutabilità}: tutte le funzioni di tipo "\textit{external}", ossia chiamabili da altri contratti, possono essere modificate, eliminate o aggiunte in un qualsiasi momento senza dover distribuire nuovamente il contratto sulla blockchain, evitando costi aggiuntivi e l'utilizzo di un nuovo indirizzo.
 
 \subsection{Creazione, aggiornamento e eliminazione di funzioni}
 
+Il \textbf{Diamond Pattern} possiede una forte \textbf{modularità}. \\Vi sono funzioni "\textit{external}", messe a disposizione da ulteriori contratti stateless chiamati \textbf{Facet}.
+\\In questo caso, vi è un chiaro parallelismo tra il mondo reale e le nomenclature utilizzate nell'architettura: nel settore industriale i diamanti vengono tagliati creando delle sfaccettature (Facets), proprio come nel Diamond Pattern sono "tagliati" aggiungendo, modificando e eliminando funzioni dai Facets. \\I contratti Facet vanno visti come entità separate, indipendenti tra loro ma che condividono l'accesso alle stesse funzioni, librerie e variabili di stato.
+\\Quando un Facet viene distribuito sulla blockchain, deve essere aggiunto al Diamond tramite una transazione che ne specifica i dettagli (ad esempio, le firme di una collezione di funzioni chiamabili su quel Facet). In questo modo, il Diamond potrà eseguire il codice presente nelle funzioni del Facet, utilizzando il suo stesso storage.
 
-\\Il \textbf{Diamond Pattern} possiede una forte \textbf{modularità}. \\Al suo interno vi sono funzioni "\textit{external}", messe a disposizione da ulteriori contratti stateless chiamati \textbf{Facets}.
-\\In questo caso, vi è un chiaro parallelismo tra il mondo reale e le nomenclature utilizzate nell'architettura: nel settore industriale i diamanti vengono tagliati creando delle sfaccettature (Facets), proprio come nel Diamond Pattern sono "tagliati" aggiungendo, modificando e eliminando funzioni dai Facets.
-\\Quando un Facet viene distribuito sulla blockchain, una o più tra le sue funzioni vengono aggiunte ad uno o più Diamond. Essendo un contratto stateless, non può contenere dati (spazio di \textbf{storage}) ma può leggere e scrivere su differenti Diamond. 
-\\I contratti Facet vanno visti come entità separate, indipendenti tra loro ma che condividono l'accesso alle stesse funzioni, librerie e variabili di stato.
 
 
 \subsection{Funzioni di fallback}
 
-Quando una funzione esterna è chiamata attraverso un Diamond, viene innescata una particolare funzione detta di \textbf{fallback}. Tale funzione determina quale Facet verrà chiamato, in base ai primi \textit{4 bytes di dati}, detti \textit{function selector} (similmente al "Opcode" del linguaggio macchina, figura \ref{fig:facet}), per poi eseguire la funzione richiesta tramite il metodo \textbf{delegatecall}.
+Quando viene chiamata una funzione dal Diamond, è di conseguenza innescata una particolare funzione detta di \textbf{fallback}. Tale funzione determina quale Facet verrà chiamato, in base ai primi \textit{4 bytes di dati}, detti \textit{function selector} (figura \ref{fig:facet}), per poi eseguire la funzione richiesta tramite il metodo \textbf{delegatecall}.
 \\La funzione di fallback e il metodo delegatecall permettono ad un Diamond di eseguire una funzione di un Facet come se fosse implementata nel Diamond stesso. 
 \\Inoltre è possibile chiamare differenti Facet in una singola transazione, risparmiando notevoli quantità di Gas, raggruppando dati e funzionalità nel singolo Diamond.
 
@@ -605,6 +606,7 @@ Quando una funzione esterna è chiamata attraverso un Diamond, viene innescata u
 
 \subsection{Storage}
 
+\todo{il discorso storage va sistemato meglio, non è una limitazione di solidity ma un problema di collisione}
 Il sistema che gestisce lo spazio di archiviazione (da ora in poi \textbf{storage}) di Solidity non supporta contratti proxy come il Diamond. Per tale ragione, è necessario implementare uno speciale storage associato al Diamond, appositamente creato per interagire con i Facet. 
 \\Quest'ultimi possono condividere l'accesso alle variabili di stato dello storage, usando le stesse strutture dati, che si devono trovare nelle stesse posizioni delle celle di memoria per essere accedute. In questo modo i Facet agiscono come entità separate ma con una memoria condivisa.
 
@@ -615,11 +617,24 @@ Il sistema che gestisce lo spazio di archiviazione (da ora in poi \textbf{storag
 \subsection{Position Manager}
 
 Il contratto che rappresenta lo Smart Vault creato dall'utente è chiamato \textbf{Position Manager}. Il suo compito principale è di gestire le posizione di Uniswap V3 appartenenti all'utente, salvando all'interno di una struttura dati quali moduli (\textit{autocompound, autorebalance, idle liquidity}) sono stati attivati per una relativa posizione.
-L'unico punto di ingresso lato utente è rappresentato dall'interazione diretta con un contratto chiamato "\textit{PositionManagerFactory}", il quale si occupa della creazione dei Position Manager.
+L'unico punto di ingresso lato utente è rappresentato dall'interazione diretta con un contratto chiamato "\textit{PositionManagerFactory}", il quale si occupa della creazione dei Position Manager (interazione mostrata nella figura \ref{fig:contracts_flow}).
 
-TODO: AGGIUNGO IMMAGINE CON POSITION MANAGER E LA FACTORY
 
-\subsection{Actions}
+\subsection{Action}
+
+Gli \textbf{Action} sono Smart Contract che contengono una singola funzione basilare; sono visti come dei singoli "\textit{mattoncini}" che costituiscono le strategie proposte all'utente.
+\\Sono estensioni del contratto \textbf{BaseAction} il quale presenta un'unica funzione \textbf{doAction} che accetta un array di byte in input e restituisce un secondo array di byte in output.
+\\
+
+Actions are smart contracts which contain a single base function of our product. They are thought to be the building blocks of user's strategy and to be easily interactable with other contracts.
+
+Problem
+There are some basic functions we want to be accessible from multiple contracts, and this is a way to avoid duplicate code while also improving the composabiliy. The idea is to build simple blocks of basic operations which can be rearranged as the product evolves.
+
+The Pattern
+Actions are build on the same contract BaseAction to have uniform input and output types (bytes[]) and main functions. Actions extend this contract introducing the functionality and the functions to manage input/output conversion.
+
+Since they will be composed by other modules to perform user's strategy they should be pretty basic, but not all functions should be actions: allowing the user to customize their strategy too much would result in a poor user expericence. For example, we want a user to be able to mint a UniV3 position, or perform a swap, but we don't want to give them the option to approve (or not to approve) tokens before each of those actions (since we would like to automate that process).
 
 SPIEGO QUALI SONO E COME VENGONO GESTITE LE ACTIONS
 
@@ -641,7 +656,7 @@ L'implementazione di tali librerie rispetta il principio \textbf{DRY} (don't rep
 
 \section{Audit}
 
-La dApp di Orbit è stata costruita prioritizzando la sicurezza dei propri utenti. Per questa ragione è stata svolto un processo di \textbf{Audit}\cite{audit} da parte di \textit{ByteRocket}.
+La dApp di Orbit è stata costruita dando priorità elevata alla sicurezza dei propri utenti. Per questa ragione è stata svolto un processo di \textbf{Audit}\cite{audit} da parte di \textit{ByteRocket}.
 \\Un Audit è un'esaminazione metodica che comprende l'analisi del codice degli Smart Contracts di un prodotto. \\Tale processo ha come obiettivo la scoperta di errori, problematiche, falle alla sicurezza e potenziali vulnerabilità nel codice. A fine analisi, viene rilasciato un report in cui vengono suggeriti miglioramenti e modi per risolvere le vulnerabilità e bug, suddivisi per severità, come mostrato in figura \ref{fig:audit}. 
 
 \begin{figure}[H]
