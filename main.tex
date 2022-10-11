@@ -373,6 +373,7 @@ Contrariamente agli Aggregatori, gli \textbf{Smart Vaults} garantiscono un'alta 
 \\\\Per tali ragioni, il modello a Smart Vault è stato scelto per la realizzazione di Orbit.
 
 \section{Moduli di Orbit}
+\label{modules}
 
 La prima versione di Orbit rilasciata ad Agosto 2022 presenta 3 caratteristiche principali chiamate \textbf{moduli}: 
 
@@ -610,7 +611,7 @@ Quando viene chiamata una funzione dal Diamond, è di conseguenza innescata una 
 
 \subsection{Storage nel Diamond Pattern}
 
-\noindent Il sistema che gestisce lo spazio di archiviazione (da ora in poi \textbf{storage}) può portare a problemi di collisione tra slot di memoria, dovuti al funzionamento del metodo delegatecall.
+\noindent Il sistema che gestisce lo spazio di archiviazione (da ora in poi \textbf{storage}) può portare a problemi di collisione tra slot di memoria, a causa del metodo delegatecall.
 \\Tale metodo crea un \textbf{sotto-contesto} in cui viene rimpiazzato il contratto Diamond con quello di un Facet, viene eseguita la funzione scritta sul Facet ed infine viene salvato il risultato per poi tornare al contesto principale. 
 \\Durante questo cambio di contesto, viene sostituito solo il \textbf{bytecode} del Diamond e non lo storage. Per tale ragione, se il metodo delegatecall provasse ad accedere un determinato slot di memoria di un Facet, esso potrebbe essere già occupato da ciò che si trova in quel determinato slot del Diamond, creando un problema di collisione in cui ci si aspetta una variabile che è effettivamente sostituita da un'altra.\\Dunque, è necessario implementare uno speciale storage ad accesso casuale (slot arbitrario) associato al Diamond, appositamente creato per interagire con i Facet.
 \\Quest'ultimi possono condividere l'accesso alle variabili di stato dello storage, usando le stesse strutture dati, che si devono trovare nelle stesse posizioni delle celle di memoria per essere accedute. In questo modo i Facet agiscono come entità separate ma con una memoria condivisa, che risiede sempre sul Diamond.
@@ -622,13 +623,21 @@ Quando viene chiamata una funzione dal Diamond, è di conseguenza innescata una 
 \subsection{Position Manager e Position Manager Factory}
 
 Il contratto \textit{Diamond} nell'architettura di Orbit è chiamato \textbf{Position Manager}; tale contratto rappresenta lo Smart Vault dell'utente.\\Il suo compito principale è di gestire le posizione di Uniswap V3 appartenenti all'utente, salvando all'interno di una struttura dati quali moduli (\textit{autocompound, autorebalance, idle liquidity}) sono stati attivati per una relativa posizione.
-\\\\Per creare un'istanza di un Position Manager è stato definito un ulteriore contratto chiamato "\textit{PositionManagerFactory}". Ricevuta una transazione specifica da parte dell'utente, il PositionManagerFactory procede alla creazione dell'associazione tra indirizzo dello Smart Vault e indirizzo del mittente della transazione, salvando tale associazione in una struttura dati conosciuta come \textbf{mapping}, all'interno del contratto stesso (figura . 
+\\\\Per creare un'istanza di un Position Manager è stato definito un ulteriore contratto chiamato "\textit{PositionManagerFactory}". Ricevuta una specifica transazione, il PositionManagerFactory istanzia lo Smart Vault, creando un'associazione tra quest'ultimo e l'indirizzo del mittente della transazione. Tale associazione è salvata in una struttura dati conosciuta come \textbf{mapping}, all'interno del contratto stesso (figura \ref{fig:factory_snippet}). 
+
+
+\begin{figure}[H]
+  \includegraphics[scale=0.32]{factory_snippet.png}
+  \centering
+  \caption{Snippet di codice di una porzione del contratto PositionManagerFactory}
+  \label{fig:factory_snippet}
+\end{figure}
 
 
 \subsection{Action}
 
-Gli \textbf{Action} sono Smart Contract che contengono una singola funzione basilare; sono visti come dei singoli "\textit{mattoncini}" che costituiscono le strategie proposte all'utente.
-\\Sono estensioni del contratto \textbf{BaseAction} il quale presenta un'unica funzione \textbf{doAction} che accetta un array di byte in input e restituisce un secondo array di byte in output (esempio mostrato in figura \ref{fig:base_action}).
+Gli \textbf{Action} sono Smart Contract che contengono una sola funzione; sono visti come dei singoli "\textit{mattoncini}" che costituiscono le strategie proposte all'utente.
+\\Sono estensioni del contratto \textbf{BaseAction} il quale presenta un'unica funzione \textbf{doAction}: è stato scelto un array di byte per uniformare l'input ricevuto e l'output emesso dal metodo, così da impostare uno standard funzionale per i blocchi Action, a prescindere dal loro contenuto (figura \ref{fig:base_action}).
 
 \begin{figure}[H]
   \includegraphics[scale=0.35]{base_action.png}
@@ -637,18 +646,34 @@ Gli \textbf{Action} sono Smart Contract che contengono una singola funzione basi
   \label{fig:base_action}
 \end{figure}
 
+\noindent L'input viene decodificato e salvato in un'opportuna struttura dati, per poi svolgere la funzione della Action e codificare di nuovo in byte l'output ottenuto.
 
 
-The Pattern
-Actions are build on the same contract BaseAction to have uniform input and output types (bytes[]) and main functions. Actions extend this contract introducing the functionality and the functions to manage input/output conversion.
+\noindent Utilizzati per comporre moduli più grandi, gli Action costituiscono le strategie proposte all'utente con contratti piuttosto basilari, così da poter essere riutilizzabili in diversi contesti. 
+\\\\Tuttavia, non tutti i contratti devono essere di tipo Action, in quanto non è consigliato (o voluto) che l'utente personalizzi troppi passaggi della strategia, ottenendo come risultato un'alta complessità d'uso.
+\\Per esempio, poniamo di voler permettere ad un utente di aprire una posizione di Uniswap V3 senza richiedere a tale utente di approvare i Token con cui aprire la posizione. Questo perché vorremmo che il processo di approvazione dei Token, necessario per essere messi a disposizione, sia automatizzato, senza che l'utente debba approvarli da sé. Ne risulta che l'apertura della posizione (\textbf{Mint}) sarà un contratto Action, mentre l'approvazione dei Token sarà una funzione gestita diversamente (flusso mostrato in figura \ref{fig:mint_action}).
 
-Since they will be composed by other modules to perform user's strategy they should be pretty basic, but not all functions should be actions: allowing the user to customize their strategy too much would result in a poor user expericence. For example, we want a user to be able to mint a UniV3 position, or perform a swap, but we don't want to give them the option to approve (or not to approve) tokens before each of those actions (since we would like to automate that process).
+\begin{figure}[H]
+  \includegraphics[scale=0.50]{mint_action.png}
+  \centering
+  \caption{Flusso tra utente e contratto Mint Action - l'utente apre una posizione}
+  \label{fig:mint_action}
+\end{figure}
 
-SPIEGO QUALI SONO E COME VENGONO GESTITE LE ACTIONS
+
 
 \subsection{Moduli}
 
-SPIEGO COME VENGONO GESTITI I MODULI
+I moduli spiegati nella sezione \ref{modules} rappresentano il cervello di Orbit: controllano quale strategia ha scelto l'utente, se vi è bisogno di modificare dati sulla posizione e comunicano al Position Manager come dovrebbe comportarsi per eseguirla.
+\\I contratti dei moduli possono contenere solo due tipi di funzioni:
+\\
+\begin{enumerate}
+    \item \textbf{pure functions}: sono funzioni che non leggono o modificano lo stato del contratto
+    \item \textbf{view functions}: sono funzioni che leggono solamente lo stato, senza modificarne il contenuto
+\end{enumerate}
+
+\noindent\\Quando l'utente richiede l'attivazione di una strategia, i moduli inoltrano al Position Manager una lista di Action da chiamare, identificati mediante l'indirizzo dei contratti o un indice, e i relativi parametri in input. Inoltre, proprio come i contratti Action, i moduli utilizzano funzioni per decodificare e codificare input e output, durante l'interazione con il Position Manager.
+
 
 \subsection{Helpers}
 
@@ -682,8 +707,6 @@ La dApp di Orbit è stata costruita dando priorità elevata alla sicurezza dei p
 
 \bibliographystyle{unsrtnat}
 \bibliography{bibliografia}
-
-
 
 
 \end{document}
