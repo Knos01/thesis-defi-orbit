@@ -672,8 +672,14 @@ I moduli spiegati nella sezione \ref{modules} rappresentano il cervello di Orbit
     \item \textbf{view functions}: sono funzioni che leggono solamente lo stato, senza modificarne il contenuto
 \end{enumerate}
 
-\noindent\\Quando l'utente richiede l'attivazione di una strategia, i moduli inoltrano al Position Manager una lista di Action da chiamare, identificati mediante l'indirizzo dei contratti o un indice, e i relativi parametri in input. Inoltre, proprio come i contratti Action, i moduli utilizzano funzioni per decodificare e codificare input e output, durante l'interazione con il Position Manager.
+\noindent\\Quando l'utente richiede l'attivazione di una strategia, i moduli inoltrano al Position Manager una lista di Action da chiamare, identificati mediante l'indirizzo dei contratti o un indice, e i relativi parametri in input. Inoltre, proprio come i contratti Action, i moduli utilizzano funzioni per decodificare e codificare input e output, durante l'interazione con il Position Manager (modulo di esempio mostrato in figura \ref{fig:example_module}).
 
+\begin{figure}[H]
+  \includegraphics[scale=0.26]{example_module.png}
+  \centering
+  \caption{Snippet di un contratto di esempio di un Modulo}
+  \label{fig:example_module}
+\end{figure}
 
 \subsection{Helpers}
 
