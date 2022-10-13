@@ -705,6 +705,20 @@ L'implementazione di tali librerie rispetta il principio \textbf{DRY} (Don't Rep
 
 \subsection{Zapper}
 
+Il termine \textbf{Zapper} indica un contratto che permetta ad un utente di aprire o chiudere una posizione, mettendo a disposizione un solo token. Sebbene Uniswap V3 necessiti una coppia di token per aprire una posizione in una pool di liquidità, il contratto Zapper implementa la logica applicativa in grado di convertire il singolo token, depositato o prelevato dall'utente, nella coppia di token presente nella pool.
+\\Il contratto Zapper presenta due funzioni principali: \textbf{zapIn} e \textbf{zapOut} (firma delle funzioni in figura \ref{fig:zapper}).
+\\La funzione di zapIn si occupa di effettuare degli \textit{swap}, ossia degli scambi, per ottenere la giusta quantità dei due token da depositare nella pool, avendo in input un singolo token scelto dall'utente tra i due disponibili.
+Dopodiché, si occupa di aprire la posizione usando i due token ottenuti nel passaggio precedente.
+\\\\La funzione di zapOut rappresenta il polo opposto: effettua il \textbf{burn} (chiusura) di una posizione, converte i due token presenti nella posizione in un singolo token a scelta dell'utente (swap) ed infine torna all'utente la corretta quantità del token selezionato.
+\\\\Similmente alle Action, il contratto Zapper viene chiamato dal Position Manager per conto dell'utente, mediante l'interfaccia della dApp di Orbit.
+
+\begin{figure}[H]
+  \includegraphics[scale=0.30]{zapper.png}
+  \centering
+  \caption{Firma delle funzioni zapIn e zapOut presenti nel contratto Zapper}
+  \label{fig:zapper}
+\end{figure}
+
 \section{Sicurezza}
 
 \subsection{Registry patterns} \label{registry}
