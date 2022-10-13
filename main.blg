@@ -110,48 +110,51 @@ Warning--empty journal in lambda
 Warning--empty year in lambda
 Warning--empty journal in aws
 Warning--empty year in aws
+Warning--empty journal in csiro
+Warning--empty year in csiro
+Warning--empty year in csiro
 Warning--empty journal in audit
 Warning--empty year in audit
 Warning--empty year in audit
-You've used 39 entries,
+You've used 40 entries,
             2481 wiz_defined-function locations,
-            719 strings with 8920 characters,
-and the built_in function-call counts, 11039 in all, are:
-= -- 956
-> -- 289
-< -- 39
-+ -- 164
-- -- 82
-* -- 670
-:= -- 1791
-add.period$ -- 163
-call.type$ -- 39
-change.case$ -- 78
-chr.to.int$ -- 35
-cite$ -- 149
-duplicate$ -- 702
-empty$ -- 1093
-format.name$ -- 125
-if$ -- 2256
+            723 strings with 9060 characters,
+and the built_in function-call counts, 11318 in all, are:
+= -- 980
+> -- 296
+< -- 40
++ -- 168
+- -- 84
+* -- 687
+:= -- 1836
+add.period$ -- 167
+call.type$ -- 40
+change.case$ -- 80
+chr.to.int$ -- 36
+cite$ -- 153
+duplicate$ -- 720
+empty$ -- 1121
+format.name$ -- 128
+if$ -- 2313
 int.to.chr$ -- 5
-int.to.str$ -- 40
-missing$ -- 39
-newline$ -- 249
-num.names$ -- 117
-pop$ -- 461
+int.to.str$ -- 41
+missing$ -- 40
+newline$ -- 255
+num.names$ -- 120
+pop$ -- 473
 preamble$ -- 1
-purify$ -- 39
+purify$ -- 40
 quote$ -- 0
-skip$ -- 344
+skip$ -- 353
 stack$ -- 0
-substring$ -- 78
-swap$ -- 46
+substring$ -- 80
+swap$ -- 47
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 273
-warning$ -- 110
-while$ -- 78
+type$ -- 280
+warning$ -- 113
+while$ -- 80
 width$ -- 0
-write$ -- 528
-(There were 110 warnings)
+write$ -- 541
+(There were 113 warnings)

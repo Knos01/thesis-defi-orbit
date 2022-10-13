@@ -713,17 +713,51 @@ Dopodiché, si occupa di aprire la posizione usando i due token ottenuti nel pas
 \\\\Similmente alle Action, il contratto Zapper viene chiamato dal Position Manager per conto dell'utente, mediante l'interfaccia della dApp di Orbit.
 
 \begin{figure}[H]
-  \includegraphics[scale=0.30]{zapper.png}
+  \includegraphics[scale=0.26]{zapper.png}
   \centering
   \caption{Firma delle funzioni zapIn e zapOut presenti nel contratto Zapper}
   \label{fig:zapper}
 \end{figure}
 
+
 \section{Sicurezza}
 
-\subsection{Registry patterns} \label{registry}
+\subsection{Registry Pattern} \label{registry}
+
+Uno dei principi cardini dell'architettura di Orbit è la \textit{mutabilità} dei contratti.\\L'obiettivo del \textbf{Registry Pattern} è avere un modo per aggiornare gli Smart Contracts ed accedere solamente alla versione più recente di essi. 
+\\Il contratto \textit{Registry} si occupa di mantenere un \textbf{mapping} per tenere traccia di tutti i contratti dei moduli, controlla se e quali moduli sono attivi ed infine permette di disabilitare o modificarli qualora venisse riscontrato un bug o una nuova versione di tali contratti venisse distribuita sulla blockchain.
+\\Un esempio di mapping all'interno di un contratto Registry è mostrato in figura \ref{fig:registry}:
+
+\begin{figure}[H]
+  \includegraphics[scale=0.28]{registry.png}
+  \centering
+  \caption{Esempio di mapping tra indirizzi nel contratto Registry}
+  \label{fig:registry}
+\end{figure}
+
+\noindent Una possibile rappresentazione visuale di tale contratto è mostrata in figura \ref{fig:registry_entry}:
+\begin{figure}[H]
+  \includegraphics[scale=0.28]{registry_entry.png}
+  \centering
+  \caption{Registry Pattern, proposto da CSIRO\cite{csiro}}
+  \label{fig:registry_entry}
+\end{figure}
+\noindent All'interno del contratto vi sono inoltre funzioni per aggiungere nuovi moduli o azioni e per modificarne lo stato, introducendo nuovi elementi all'interno del mapping.
+\\Quando il Diamond proverà ad accedere ad un contratto, il Registry si occuperà di \textit{reindirizzarlo} all'ultima versione disponibile di tale contratto. 
 
 \subsection{Timelock}
+
+Un \textbf{Timelock} è una porzione di codice all'interno di uno Smart Contract che può \textit{bloccare temporaneamente} alcune funzionalità del contratto stesso. \\L'utilizzo di un timelock fornisce un ulteriore strato di sicurezza tra gli utenti di Orbit e il prodotto stesso.
+\\\\Immaginiamo che vi possa essere una falla di sicurezza all'interno dell'architettura di questo tipo:
+
+\begin{enumerate}
+    \item un malintenzionato aggiunge un Action e il relativo indirizzo all'interno delle Action disponibili
+    \item il malintenzionato può ora chiamare tale azione tramite il Position Manager di un utente
+    \item il codice malevolo nella Action ha pieno accesso ai fondi del contratto Position Manager e può potenzialmente prelevare tutta la liquidità investita in posizioni da parte dell'utente
+\end{enumerate}
+
+\noindent Con un timelock, il primo passaggio (1) dell'attacco non è possibile: l'attaccante può solo inoltrare una richiesta di aggiunta della Action, ma tale cambiamento verrà propagato solo dopo un certo periodo di tempo (per esempio, una settimana).\\L'utente interessato e il team di sviluppo possono avere dunque il tempo di controllare il cambiamento proposto e spostare i fondi dell'utente in un posto sicuro, prima che venga approvato.
+
 
 \section{Audit}
 

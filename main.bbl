@@ -1,4 +1,4 @@
-\begin{thebibliography}{39}
+\begin{thebibliography}{40}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -254,6 +254,13 @@ Nick Mudge.
 \newblock Cloud computing with aws.
 \newblock {\natexlab{b}}.
 \newblock URL \url{https://aws.amazon.com/what-is-aws/}.
+\newblock [Ultimo accesso: 13/10/2022].
+
+\bibitem[{CSIRO}()]{csiro}
+{CSIRO}.
+\newblock Contract {Registry}.
+\newblock URL
+  \url{https://research.csiro.au/blockchainpatterns/general-patterns/contract-structural-patterns/contract-registry/}.
 \newblock [Ultimo accesso: 13/10/2022].
 
 \bibitem[Rocket()]{audit}
