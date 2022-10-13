@@ -10,6 +10,13 @@
 
 % Useful packages
 \usepackage{amsmath}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{} % Clears the standard fancy style
+
+%\fancyhf[C]{\thepage}
+\fancyfoot[LE,RO]{\hfill\thepage\hfill}
+\fancyhead[HL]{\nouppercase{\leftmark\hfill}}
 \usepackage{float}
 \usepackage[hyphens]{url}
 \usepackage{graphicx}\usepackage{array}
@@ -662,17 +669,17 @@ Gli \textbf{Action} sono Smart Contract che contengono una sola funzione; sono v
 \\Per esempio, poniamo di voler permettere ad un utente di aprire una posizione di Uniswap V3 senza richiedere a tale utente di approvare i Token con cui aprire la posizione. Questo perché vorremmo che il processo di approvazione dei Token, necessario per essere messi a disposizione, sia automatizzato, senza che l'utente debba approvarli da sé. Ne risulta che l'apertura della posizione (\textbf{Mint}) sarà un contratto Action, mentre l'approvazione dei Token sarà una funzione gestita diversamente (flusso mostrato in figura \ref{fig:mint_action}).
 
 \begin{figure}[H]
-  \includegraphics[scale=0.50]{mint_action.png}
+  \includegraphics[scale=0.55]{mint_action.png}
   \centering
-  \caption{Flusso tra utente e contratto Mint Action - l'utente apre una posizione}
+  \caption{Flusso tra utente e contratto Mint Action - apertura di una posizione}
   \label{fig:mint_action}
 \end{figure}
 
 
-
+\\\\
 \subsection{Moduli}
 
-I moduli spiegati nella sezione \ref{modules} rappresentano il cervello di Orbit: controllano quale strategia ha scelto l'utente, se vi è bisogno di modificare dati sulla posizione e comunicano al Position Manager come dovrebbe comportarsi per eseguirla.
+I moduli spiegati nella sezione \ref{modules} rappresentano il cervello di Orbit: controllano quali strategie ha attivato l'utente e comunicano al Position Manager come dovrebbe comportarsi per eseguirle.
 \\I contratti dei moduli possono contenere solo due tipi di funzioni:
 \\
 \begin{enumerate}
@@ -681,6 +688,7 @@ I moduli spiegati nella sezione \ref{modules} rappresentano il cervello di Orbit
 \end{enumerate}
 
 \noindent\\Quando l'utente richiede l'attivazione di una strategia, i moduli inoltrano al Position Manager una lista di Action da chiamare, identificati mediante l'indirizzo dei contratti o un indice, e i relativi parametri in input. Inoltre, proprio come i contratti Action, i moduli utilizzano funzioni per decodificare e codificare input e output, durante l'interazione con il Position Manager (modulo di esempio mostrato in figura \ref{fig:example_module}).
+\\\\Tuttavia, i contratti presenti nell'architettura non sono stati pensati per controllare in che stato si trovino le posizioni di Uniswap V3 dell'utente in un determinato momento.\\ Per questa ragione sono stati creati degli script \textbf{off-chain} (non distribuiti sulla blockchain) chiamati \textbf{Keeper}, i quali vengono eseguiti periodicamente da delle \textbf{funzioni lambda}\cite{lambda} caricate su \textbf{AWS}\cite{aws}, per controllare se è necessario eseguire delle determinate funzioni presenti sui moduli.\\Per esempio, il keeper del modulo \textit{Autocompund} controlla ogni $x$ ore (dove x è un numero impostato nelle lambda) se l'utente ha superato una una certa percentuale di fee accumulate sulla posizione, così da poter chiamare il contratto Autocompund per reinvestire tali fee.
 
 \begin{figure}[H]
   \includegraphics[scale=0.26]{example_module.png}
@@ -692,8 +700,10 @@ I moduli spiegati nella sezione \ref{modules} rappresentano il cervello di Orbit
 \subsection{Helpers}
 
 Gli \textbf{Helpers} sono particolari librerie o funzioni utilizzabili più volte nel codice.
-L'implementazione di tali librerie rispetta il principio \textbf{DRY} (don't repeat yourself), evitando di scrivere codice duplicato all'interno degli Smart Contracts.
+L'implementazione di tali librerie rispetta il principio \textbf{DRY} (Don't Repeat Yourself), evitando di scrivere codice duplicato all'interno degli Smart Contracts.
 \\Invece, è possibile utilizzare le funzioni degli Helpers importando solo ciò di cui abbiamo bisogno negli opportuni contratti, senza dover riscrivere codice già esistente nella codebase.
+
+\subsection{Zapper}
 
 \section{Sicurezza}
 
