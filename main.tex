@@ -137,7 +137,7 @@ Quando una transazione è inviata sulla blockchain, i dettagli di essa quali cri
 
 \subsection{Le dimensioni del mercato attuale}
 
-\noindent Nel 2021, secondo un report di \textbf{Electric Capital}\cite{web3_dev} mostrato nella figura \ref{fig:web3_dev} è stata raggiunto un nuovo record di \textbf{18.000 sviluppatori attivi al mese} nello sviluppo di software basati su blockchain. \\Si stima inoltre che più del \textbf{65\%} degli sviluppatori blockchain abbia iniziato a lavorare nel 2021 in questo nuovo settore, con un aumento di \textbf{34.000} persone, il più alto nella storia.
+\noindent Nel 2021, secondo un report di \textbf{Electric Capital}\cite{web3_dev} mostrato nella figura \ref{fig:web3_dev} è stato raggiunto un nuovo record di \textbf{18.000 sviluppatori attivi al mese} nello sviluppo di software basati su blockchain. \\Si stima inoltre che più del \textbf{65\%} degli sviluppatori blockchain abbia iniziato a lavorare nel 2021 in questo nuovo settore, con un aumento di \textbf{34.000} persone, il più alto nella storia.
 
 \begin{figure}[H]
   \includegraphics[scale=0.3]{web3_dev.png}
@@ -159,7 +159,10 @@ Nella finanza centralizzata, ogni singola operazione finanziaria tra due persone
 Ciò incrementa le già prolisse tempistiche burocratiche, oltre ad aggiungere i costi dovuti al servizio fornito dagli enti che permettono l'operazione.
 \\\\Diversamente, la finanza decentralizzata permette l'interazione tra due soggetti senza l'intermediazione di un sistema centralizzato (come una banca), bensì mediante un applicativo software costruito sopra la tecnologia blockchain, rendendo le operazioni rapide, pubbliche e sicure.
 
+\subsection{Flessibilità}
 
+Una caratteristica della DeFi che ritengo importante citare è ciò che più la contraddistingue dalla finanza tradizionale: la sua \textit{flessibilità}.\\
+In qualsiasi momento un utente può trasferire i propri assets digitali, senza dover chiedere il permesso a soggetti di terze parti, evitando costose commissioni e con un'attesa che va da pochi secondi a pochi minuti. 
 
 \section{Applicazioni decentralizzate}
 Gli applicativi software utilizzati in DeFi vengono chiamati \textit{dApps (decentralized applications)}, ovvero particolari prodotti software che interagiscono con le blockchain. Di tali reti noi considereremo solo quella di \textbf{Ethereum}\cite{ethereum} e le sue estensioni, note per la loro scalabilità ed accessibilità.
@@ -167,14 +170,14 @@ Gli applicativi software utilizzati in DeFi vengono chiamati \textit{dApps (dece
 
 \subsection{Blockchain Ethereum}
 La blockchain principale di Ethereum (conosciuta come \textbf{Mainnet}) è una rete sicura, scalabile, decentralizzata e soprattutto \textbf{programmabile}; ossia è possibile costruirci sopra e distribuire dApps, rendendo la rete una sorta di gigantesco marketplace in cui trovare servizi finanziari, videogiochi, social network e diverse altre applicazioni. 
-Tuttavia, il largo utilizzo della rete da parte degli utenti, ha causato una periodica congestione del traffico delle transazioni, con un conseguente aumento dei costi per l'invio di transazioni e diminuendo la velocità, da parte della rete, di elaborarle.
+Tuttavia, il largo utilizzo della rete da parte degli utenti, ha causato una periodica congestione del traffico delle transazioni, con un conseguente aumento dei costi per l'invio delle stesse e diminuendo la velocità, da parte della rete, di elaborarle.
 Per tale ragione, sono state realizzate delle blockchain separate da Ethereum, ma che la estendono per aumentarne la scalabilità: tali reti sono conosciute come reti di Livello 2 (\textbf{Layer 2}).
-\\\\Le reti Layer 2 (per esempio, Polygon\cite{polygon} e Arbitrum\cite{arbitrum}) puntano ad aumentare la velocità delle transazioni e il volume di esse (ossia, più transazioni al secondo), in modo tale da rendere la rete accessibile a chiunque, abbattendone i costi.
+\\\\Le reti Layer 2 (per esempio, \textbf{Polygon}\cite{polygon} e \textbf{Arbitrum}\cite{arbitrum}) puntano ad aumentare la velocità delle transazioni e il volume di esse (ossia, più transazioni al secondo), in modo tale da rendere la rete accessibile a chiunque, abbattendone i costi.
 
 \subsection{Smart Contracts}
 \\Sulle blockchain di Ethereum (Layer 2 compreso), risiedono dei particolari programmi denominati \textit{Smart Contracts}\cite{smartcontracts}, i quali sono costruiti come un insieme di dati e funzioni, che risiedono ad uno specifico indirizzo sulla rete.
-\\I contratti sono come un insieme di regole, che se soddisfatte, eseguono una determinata funzione: ciò permette alle dApps di essere regolamentate automaticamente, senza la necessità di un mediatore. Inoltre possono contenere dei fondi (criptovalute), proprio come se fossero dei wallet digitali.
-\\\\Il codice di backend delle dApps è contenuto negli Smart Contracts, distribuiti su una rete decentralizzata; vengono utilizzati per la logica applicativa delle dApps, mentre il salvataggio dei dati è effettuato sulle blockchain di Ethereum dove risiedono gli Smart Contracts.
+\\I contratti sono come un insieme di regole, che se soddisfatte, eseguono una determinata funzione: ciò permette alle dApps di essere automaticamente regolamentate, senza la necessità di un mediatore. Inoltre tali contratti possono contenere dei fondi (criptovalute) con i quali svolgere operazioni \textbf{on-chain} (mediante la blockchain), proprio come se fossero dei wallet digitali.
+
 
 
 \subsection{Accesso alle dApps}
@@ -182,17 +185,6 @@ Per tale ragione, sono state realizzate delle blockchain separate da Ethereum, m
 Il concetto di login ideato nel web tradizionale (noto anche come Web2), tipicamente caratterizzato dall'inserimento di un'email e una password, viene sorpassato da una nuova autenticazione del \textbf{Web3}\cite{web2_web3}: attraverso il proprio \textit{portafoglio digitale} (da ora in poi, wallet \cite{wallet}) è possibile accedere al proprio account e gestire i propri assets digitali, eventualmente mettendoli a disposizione della dApp a cui si è connessi.
 \\\\I wallet presentano il vantaggio di non dover fornire nomi, indirizzi fisici, email o altre informazioni personali, garantendo la riservatezza dei propri dati; basta creare un wallet per avere immediato accesso alle piattaforme, senza registrazioni.
 
-
-%\todo{queste due sezioni possono diventare una sola o essere tolte/sostituite}
-\section{Operazioni in DeFi}
-%\todo{non sono operazioni SOLO in DeFi, si può spiegare meglio}
-Ogni operazione nella DeFi viene detta \textbf{transazione}. Una transazione è permanentemente salvata sui registri della blockchain, rendendo ogni singola operazione, associata ad un identificativo, consultabile in qualsiasi momento da qualsiasi persona.
-\\Tale trasparenza viene difficilmente concessa dalle banche, ponendo la DeFi come un sistema aperto e rintracciabile.
-
-\section{Flessibilità}
-
-L'ultima caratteristica della DeFi che ritengo importante citare è ciò che più la contraddistingue dalla finanza tradizionale: la sua flessibilità.\\
-In qualsiasi momento un utente può trasferire i propri assets digitali, senza dover chiedere il permesso a soggetti di terze parti, evitando costose commissioni e con un'attesa che va da pochi secondi a pochi minuti. 
 
 
 \chapter{Uniswap, piattaforma di Liquidity Providing}
@@ -273,7 +265,7 @@ dove:
 Dunque, il nuovo numero di patate nel contenitore corrisponde a \textit{570}, mentre il numero di mele, calcolato mediante la \textbf{formula \ref{eqn:nuove_mele}} è uguale a \textit{438}: di conseguenza il contadino riceverà \textit{500 - 438 = 62 mele}.
 \\\\A questo punto, possiamo facilmente dimostrare che se un contadino volesse scambiare le proprie mele, riceverebbe più patate rispetto alle mele che vuole inviare. 
 \\Poniamo che il contadino decida di inviare \textit{70 mele} (scambio #2): ripercorrendo i passaggi sopra presentati, la quantità di patate ricevute in cambio sarà uguale a 78.
-Ciò è dovuto al fatto la quantità di mele nel contenitore prima dello scambio #2 era minore rispetto alla quantità di patate.
+Ciò è dovuto al fatto che la quantità di mele nel contenitore prima dello scambio #2 era minore rispetto alla quantità di patate.
 \\\\Nella realtà dei fatti, questo contenitore magico è conosciuto come \textbf{pool di liquidità}.
 
 \section{Pool di liquidità}
@@ -312,7 +304,7 @@ In tal modo, la liquidità concentrata garantirà un guadagno superiore di commi
 \subsection{Tick di prezzo}
 
 Per rendere la liquidità concentrata funzionale, lo spazio continuo del prezzo è stato partizionato in \textbf{tick}.
-\\\\I tick sono i limiti di aree discrete nello spazio del prezzo. Tali limiti sono posizionati in modo tale che il diminuire o aumentare di 1 tick rappresenti l'aumento o la diminuzione percentuale del 0.01\%\ del prezzo in ogni punto dello spazio.
+\\\\I tick sono i limiti di aree discrete nello spazio del prezzo. Tali limiti sono posizionati in modo tale che il diminuire o l'aumentare di 1 tick rappresenti l'aumento o la diminuzione percentuale del 0.01\%\ del prezzo in ogni punto dello spazio.
 \\Dunque quando una posizione viene creata, un LP non può scegliere qualsiasi valore per il range di prezzo: è necessario che il limite inferiore (\textbf{lower tick}) e il limite superiore (\textbf{upper tick}) corrispondano a dei tick di prezzo validi.
 
 \subsection{Swap e Fees}
@@ -526,7 +518,7 @@ Ciò che più differenzia un'applicazione Web2 da una dApp in Web3 è l'interazi
 
 \section{Connessione wallet to wallet}
 
-Analogamente all'interazione \textit{"Client-Server"} del web tradizionale, vi è un'interazione \textit{Wallet-to-Wallet} nel Web3. Ogni utente più avere uno o più wallet digitali, ciascuno dei quali viene identificato da un indirizzo (\textbf{Ethereum Address}) a \textbf{42 caratteri alfanumerici}. Di questi, 40 sono in formato numerico esadecimale e i restanti 2 compongono il prefisso \textbf{0x}.
+Analogamente all'interazione \textit{"Client-Server"} del web tradizionale, vi è un'interazione \textit{Wallet-to-Wallet} nel Web3. Ogni utente può avere uno o più wallet digitali, ciascuno dei quali viene identificato da un indirizzo (\textbf{Ethereum Address}) a \textbf{42 caratteri alfanumerici}. Di questi, 40 sono in formato numerico esadecimale e i restanti 2 compongono il prefisso \textbf{0x}.
 \\\\A questo punto, è lecito chiedersi come possa un wallet interagire con gli Smart Contracts di Orbit.\\
 Nello stesso modo in cui i wallet possono comunicare tra loro, ossia attraverso l'invio e ricezione di transazioni, anche uno Smart Contract può ricevere delle transazioni, essendo identificato sulla blockchain con un proprio indirizzo esadecimale.
 \\\\Per fare un esempio, lo Smart Contract del token \textbf{WETH} presente sulla rete Polygon, si trova all'indirizzo:\\

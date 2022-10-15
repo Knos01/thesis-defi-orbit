@@ -1,0 +1,167 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: unsrtnat.bst
+Database file #1: bibliografia.bib
+Warning--empty journal in blockchain
+Warning--empty year in blockchain
+Warning--empty year in blockchain
+Warning--empty journal in web3_dev
+Warning--empty year in web3_dev
+Warning--empty year in web3_dev
+Warning--empty journal in ethereum
+Warning--empty year in ethereum
+Warning--empty year in ethereum
+Warning--empty journal in polygon
+Warning--empty year in polygon
+Warning--empty year in polygon
+Warning--empty journal in arbitrum
+Warning--empty year in arbitrum
+Warning--empty year in arbitrum
+Warning--empty journal in smartcontracts
+Warning--empty year in smartcontracts
+Warning--empty year in smartcontracts
+Warning--empty journal in web2_web3
+Warning--empty year in web2_web3
+Warning--empty year in web2_web3
+Warning--empty journal in wallet
+Warning--empty year in wallet
+Warning--empty year in wallet
+Warning--empty journal in uniswap
+Warning--empty year in uniswap
+Warning--empty year in uniswap
+Warning--empty journal in amm
+Warning--empty year in amm
+Warning--empty year in amm
+Warning--empty journal in order_book
+Warning--empty year in order_book
+Warning--empty year in order_book
+Warning--empty journal in matching
+Warning--empty year in matching
+Warning--empty year in matching
+Warning--empty journal in liquidity_pool
+Warning--empty year in liquidity_pool
+Warning--empty year in liquidity_pool
+Warning--empty journal in erc_20
+Warning--empty year in erc_20
+Warning--empty year in erc_20
+Warning--empty journal in erc_721
+Warning--empty year in erc_721
+Warning--empty year in erc_721
+Warning--empty journal in v2_waste
+Warning--empty year in v2_waste
+Warning--empty year in v2_waste
+Warning--empty journal in concentrated_liquidity
+Warning--empty year in concentrated_liquidity
+Warning--empty year in concentrated_liquidity
+Warning--empty journal in orbit_website
+Warning--empty year in orbit_website
+Warning--empty year in orbit_website
+Warning--empty journal in gas
+Warning--empty year in gas
+Warning--empty year in gas
+Warning--empty journal in aggregator
+Warning--empty year in aggregator
+Warning--empty year in aggregator
+Warning--empty journal in smart_vault
+Warning--empty year in smart_vault
+Warning--empty year in smart_vault
+Warning--empty journal in yearn
+Warning--empty year in yearn
+Warning--empty year in yearn
+Warning--empty journal in beefy
+Warning--empty year in beefy
+Warning--empty year in beefy
+Warning--empty journal in idle
+Warning--empty year in idle
+Warning--empty year in idle
+Warning--empty journal in js
+Warning--empty year in js
+Warning--empty year in js
+Warning--empty journal in react
+Warning--empty year in react
+Warning--empty year in react
+Warning--empty journal in spa
+Warning--empty year in spa
+Warning--empty year in spa
+Warning--empty journal in react_2021
+Warning--empty year in react_2021
+Warning--empty year in react_2021
+Warning--empty journal in tailwind
+Warning--empty year in tailwind
+Warning--empty year in tailwind
+Warning--empty journal in ethers
+Warning--empty year in ethers
+Warning--empty year in ethers
+Warning--empty journal in metamask
+Warning--empty year in metamask
+Warning--empty year in metamask
+Warning--empty journal in walletconnect
+Warning--empty year in walletconnect
+Warning--empty year in walletconnect
+Warning--empty journal in solidty
+Warning--empty year in solidty
+Warning--empty year in solidty
+Warning--empty journal in hardhat
+Warning--empty year in hardhat
+Warning--empty year in hardhat
+Warning--empty journal in evm
+Warning--empty year in evm
+Warning--empty year in evm
+Warning--empty journal in diamond
+Warning--empty year in diamond
+Warning--empty year in diamond
+Warning--empty journal in lambda
+Warning--empty year in lambda
+Warning--empty year in lambda
+Warning--empty journal in aws
+Warning--empty year in aws
+Warning--empty year in aws
+Warning--empty journal in csiro
+Warning--empty year in csiro
+Warning--empty year in csiro
+Warning--empty journal in audit
+Warning--empty year in audit
+Warning--empty year in audit
+You've used 46 entries,
+            2481 wiz_defined-function locations,
+            755 strings with 9664 characters,
+and the built_in function-call counts, 12824 in all, are:
+= -- 1086
+> -- 338
+< -- 46
++ -- 188
+- -- 96
+* -- 760
+:= -- 2075
+add.period$ -- 178
+call.type$ -- 46
+change.case$ -- 86
+chr.to.int$ -- 46
+cite$ -- 166
+duplicate$ -- 834
+empty$ -- 1301
+format.name$ -- 146
+if$ -- 2635
+int.to.chr$ -- 1
+int.to.str$ -- 47
+missing$ -- 52
+newline$ -- 278
+num.names$ -- 138
+pop$ -- 552
+preamble$ -- 1
+purify$ -- 46
+quote$ -- 0
+skip$ -- 423
+stack$ -- 0
+substring$ -- 92
+swap$ -- 52
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 304
+warning$ -- 120
+while$ -- 92
+width$ -- 0
+write$ -- 599
+(There were 120 warnings)
