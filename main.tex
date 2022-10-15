@@ -183,9 +183,9 @@ Il concetto di login ideato nel web tradizionale (noto anche come Web2), tipicam
 \\\\I wallet presentano il vantaggio di non dover fornire nomi, indirizzi fisici, email o altre informazioni personali, garantendo la riservatezza dei propri dati; basta creare un wallet per avere immediato accesso alle piattaforme, senza registrazioni.
 
 
-\todo{queste due sezioni possono diventare una sola o essere tolte/sostituite}
+%\todo{queste due sezioni possono diventare una sola o essere tolte/sostituite}
 \section{Operazioni in DeFi}
-\todo{non sono operazioni SOLO in DeFi, si può spiegare meglio}
+%\todo{non sono operazioni SOLO in DeFi, si può spiegare meglio}
 Ogni operazione nella DeFi viene detta \textbf{transazione}. Una transazione è permanentemente salvata sui registri della blockchain, rendendo ogni singola operazione, associata ad un identificativo, consultabile in qualsiasi momento da qualsiasi persona.
 \\Tale trasparenza viene difficilmente concessa dalle banche, ponendo la DeFi come un sistema aperto e rintracciabile.
 
@@ -197,12 +197,12 @@ In qualsiasi momento un utente può trasferire i propri assets digitali, senza d
 
 \chapter{Uniswap, piattaforma di Liquidity Providing}
 
-\todo{intro da rivedere}
+%\todo{intro da rivedere}
 Avendo approfondito cosa è la DeFi, quali sono le sue caratteristiche e i principali vantaggi, ritengo necessario concentrarsi su quali sono i prodotti "dApps" che hanno messo le basi per il lavoro svolto durante il mio Project Work.
 
 \section{Uniswap}
 
-\todo{intro su uniswap da rivedere}
+%\todo{intro su uniswap da rivedere}
 Innanzitutto, è bene distinguere la piattaforma Uniswap\cite{uniswap} dall'omonimo protocollo.
 \\La dApp di Uniswap (conosciuta come Uniswap Interface) è una piattaforma che permette agli utenti l'interazione con il protocollo Uniswap.
 \\\\Quest'ultimo è una suite di Smart Contracts, realizzata con lo scopo di formare ciò che nella finanza decentralizzata è definito come \textbf{Automated Market Maker} (da ora in poi AMM\cite{amm}).
@@ -210,7 +210,6 @@ Innanzitutto, è bene distinguere la piattaforma Uniswap\cite{uniswap} dall'omon
 \section{Scambi nei mercati tradizionali}
 
 La maggior parte dei mercati tradizionali ad accesso pubblico utilizza ciò che viene definito \textit{Order Book}\cite{order_book}, ossia un elenco degli ordini di acquisto e vendita attualmente aperti per un asset, organizzati per prezzo.
-\todo{non spiego cosa sia un asset}
 \\Sostanzialmente, un \textit{sistema di corrispondenza}\cite{matching} si occupa di abbinare gli ordini di acquisto con quelli di vendita, usando l'order book per eseguire le operazioni tra i partecipanti dello scambio.
 
 
@@ -291,7 +290,7 @@ Uniswap V3 è l'ultima versione del protocollo rilasciata da Uniswap nel maggio 
 \subsection{Posizioni}
 
 Utilizzando l'interfaccia Uniswap, gli utenti possono connettere il loro wallet personale per mettere a disposizione un certo ammontare di liquidità all'interno di una pool.
-\todo{equa proporzione, come mai?}
+%\todo{equa proporzione, come mai?}
 Tale liquidità, come spiegato in precedenza, dovrà mantenere un'equa proporzione tra i due asset messi a disposizione: tale operazione viene definita come \textit{apertura di una \textbf{posizione}} (o in inglese, position minting).
 \\\\Su Uniswap V3, le posizioni vengono rappresentate mediante NFT (ERC-721\cite{erc_721}), i quali certificano un determinato wallet, in questo caso chi effettua il minting, come proprietario della posizione.
 
@@ -598,7 +597,7 @@ L'architettura presenta numerosi Smart Contracts, ognuno di essi adibito ad una 
 \subsection{Vantaggi del Diamond}
 
 Il Diamond Pattern è uno standard recente, che ha trovato largo uso nel mondo Web3.
-\\Il vantaggio principale sta nello sfruttare un \textbf{singolo smart contract} (chiamato Diamond), dunque un solo indirizzo ethereum, per contenere tutte le funzionalità alle quali possono accedere i contratti presenti nell'architettura.
+\\Il vantaggio principale sta nello sfruttare un \textbf{singolo smart contract} (chiamato Diamond), dunque un solo indirizzo Ethereum, per contenere tutte le funzionalità alle quali possono accedere i contratti presenti nell'architettura.
 \\Seppur tale contratto sia soggetto alla canonica limitazione di dimensione di \textbf{24KB}, può fare affidamento a codice presente su contratti esterni, rendendo lo spazio a sua disposizione \textbf{virtualmente infinito}. 
 \\\\Non meno importante è la sua \textbf{mutabilità}: tutte le funzioni di tipo "\textit{external}", ossia chiamabili da altri contratti, possono essere modificate, eliminate o aggiunte in un qualsiasi momento senza dover distribuire nuovamente il contratto sulla blockchain, evitando costi aggiuntivi e l'utilizzo di un nuovo indirizzo.
 
@@ -683,12 +682,12 @@ I moduli spiegati nella sezione \ref{modules} rappresentano il cervello di Orbit
 \\I contratti dei moduli possono contenere solo due tipi di funzioni:
 \\
 \begin{enumerate}
-    \item \textbf{pure functions}: sono funzioni che non leggono o modificano lo stato del contratto
-    \item \textbf{view functions}: sono funzioni che leggono solamente lo stato, senza modificarne il contenuto
+    \item \textbf{pure functions}: sono funzioni che non leggono o modificano lo stato del contratto;
+    \item \textbf{view functions}: sono funzioni che leggono solamente lo stato, senza modificarne il contenuto;
 \end{enumerate}
 
 \noindent\\Quando l'utente richiede l'attivazione di una strategia, i moduli inoltrano al Position Manager una lista di Action da chiamare, identificati mediante l'indirizzo dei contratti o un indice, e i relativi parametri in input. Inoltre, proprio come i contratti Action, i moduli utilizzano funzioni per decodificare e codificare input e output, durante l'interazione con il Position Manager (modulo di esempio mostrato in figura \ref{fig:example_module}).
-\\\\Tuttavia, i contratti presenti nell'architettura non sono stati pensati per controllare in che stato si trovino le posizioni di Uniswap V3 dell'utente in un determinato momento.\\ Per questa ragione sono stati creati degli script \textbf{off-chain} (non distribuiti sulla blockchain) chiamati \textbf{Keeper}, i quali vengono eseguiti periodicamente da delle \textbf{funzioni lambda}\cite{lambda} caricate su \textbf{AWS}\cite{aws}, per controllare se è necessario eseguire delle determinate funzioni presenti sui moduli.\\Per esempio, il keeper del modulo \textit{Autocompund} controlla ogni $x$ ore (dove x è un numero impostato nelle lambda) se l'utente ha superato una una certa percentuale di fee accumulate sulla posizione, così da poter chiamare il contratto Autocompund per reinvestire tali fee.
+\\\\Tuttavia, i contratti presenti nell'architettura non sono stati pensati per controllare in che stato si trovino le posizioni di Uniswap V3 dell'utente in un determinato momento.\\ Per questa ragione sono stati creati degli script \textbf{off-chain} (non distribuiti sulla blockchain) chiamati \textbf{Keeper}, i quali vengono eseguiti periodicamente da delle \textbf{funzioni lambda}\cite{lambda} caricate su \textbf{AWS}\cite{aws}, per controllare se è necessario eseguire delle determinate funzioni presenti sui moduli.\\Per esempio, il keeper del modulo \textit{Autocompund} controlla ogni $x$ ore (dove $x$ è un numero impostato nelle lambda) se l'utente ha superato una una certa percentuale di fee accumulate sulla posizione, così da poter chiamare il contratto Autocompund per reinvestire tali fee.
 
 \begin{figure}[H]
   \includegraphics[scale=0.26]{example_module.png}
@@ -751,9 +750,9 @@ Un \textbf{Timelock} è una porzione di codice all'interno di uno Smart Contract
 \\\\Immaginiamo che vi possa essere una falla di sicurezza all'interno dell'architettura di questo tipo:
 
 \begin{enumerate}
-    \item un malintenzionato aggiunge un Action e il relativo indirizzo all'interno delle Action disponibili
-    \item il malintenzionato può ora chiamare tale azione tramite il Position Manager di un utente
-    \item il codice malevolo nella Action ha pieno accesso ai fondi del contratto Position Manager e può potenzialmente prelevare tutta la liquidità investita in posizioni da parte dell'utente
+    \item un malintenzionato aggiunge una Action e il relativo indirizzo all'interno delle Action disponibili;
+    \item il malintenzionato può ora chiamare tale azione tramite il Position Manager di un utente;
+    \item il codice malevolo nella Action ha pieno accesso ai fondi del contratto Position Manager e può potenzialmente prelevare tutta la liquidità investita in posizioni da parte dell'utente;
 \end{enumerate}
 
 \noindent Con un timelock, il primo passaggio (1) dell'attacco non è possibile: l'attaccante può solo inoltrare una richiesta di aggiunta della Action, ma tale cambiamento verrà propagato solo dopo un certo periodo di tempo (per esempio, una settimana).\\L'utente interessato e il team di sviluppo possono avere dunque il tempo di controllare il cambiamento proposto e spostare i fondi dell'utente in un posto sicuro, prima che venga approvato.
@@ -761,7 +760,7 @@ Un \textbf{Timelock} è una porzione di codice all'interno di uno Smart Contract
 
 \section{Audit}
 
-La dApp di Orbit è stata costruita dando priorità elevata alla sicurezza dei propri utenti. Per questa ragione è stata svolto un processo di \textbf{Audit}\cite{audit} da parte di \textit{ByteRocket}.
+La dApp di Orbit è stata costruita dando priorità elevata alla sicurezza dei propri utenti. Per questa ragione è stato svolto un processo di \textbf{Audit}\cite{audit} da parte di \textit{ByteRocket}.
 \\Un Audit è un esame metodico che comprende l'analisi del codice degli Smart Contracts di un prodotto. \\Tale processo ha come obiettivo la scoperta di errori, problematiche, falle alla sicurezza e potenziali vulnerabilità nel codice. A fine analisi, viene rilasciato un report in cui vengono suggeriti miglioramenti e modi per risolvere le vulnerabilità e i bug, suddivisi per severità, come mostrato in figura \ref{fig:audit}. 
 
 \begin{figure}[H]
@@ -774,11 +773,14 @@ La dApp di Orbit è stata costruita dando priorità elevata alla sicurezza dei p
 \noindent \\Come team di sviluppo, abbiamo risolto i 39 problemi trovati da ByteRocket, ottenendo una certificazione di completamento dell'Audit, al fine di garantire agli utenti di Orbit un elevato grado di sicurezza ed affidabilità.
 
 
-\chapter{Future implementazione all'interno di Orbit}
+\chapter{Conclusioni e prospettive future}
 
-\todo{aggiungo riferimenti a libri di ts, js, solidity, mastering ethereum, blockchain, react}
-
-
+\nocite{mastering_ethereum}
+\nocite{solidity_book}
+\nocite{blockchain_book}
+\nocite{js_book}
+\nocite{ts_book}
+\nocite{react_book}
 \bibliographystyle{unsrtnat}
 \bibliography{bibliografia}
 
