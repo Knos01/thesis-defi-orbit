@@ -30,18 +30,7 @@
 \usepackage[paper=a4paper,margin=1in]{geometry}
 \usepackage[square,numbers,super]{natbib}
 \usepackage[nottoc]{tocbibind}
-\makeatletter
-\renewenvironment{abstract}{%
-    \if@twocolumn
-      \section*{\abstractname}%
-    \else
-      \begin{center}%
-        {\bfseries \Large\abstractname\vspace{\z@}}
-      \end{center}%
-      \quotation
-    \fi}
-    {\if@twocolumn\else\endquotation\fi}
-\makeatother
+
 
 \begin{document}
 
@@ -99,10 +88,26 @@
     \end{titlepage}
 
 
+
+
+\null\vspace{\stretch{1}}
+\begin{flushright}
+\begin{minipage}{5.3in}
+\begin{flushright}
+\begin{em}
+Inserisco dedica
+\end{em}
+\end{flushright}
+\end{minipage}
+\end{flushright}
+\vspace{\stretch{2}} \null
+
+\vspace{\fill}
 \begin{abstract}
-\noindent La finanza decentralizzata è un settore emergente che sfrutta la tecnologia blockchain per garantire una serie di servizi finanziari. Innanzitutto, in questa tesi verranno distinte le differenze tra finanza decentralizzata e tradizionale, per poi evidenziare come la blockchain venga utilizzata in questo settore. Saranno mostrati esempi di protocolli e applicazioni decentralizzate, soffermandosi sul funzionamento di operazioni di scambio e deposito di cripto valute.
+\noindent La finanza decentralizzata è un settore emergente che sfrutta la tecnologia blockchain per garantire una serie di servizi finanziari. In questa tesi verranno distinte le differenze tra finanza decentralizzata e tradizionale, per poi evidenziare come la blockchain venga utilizzata in questo settore. Saranno mostrati esempi di protocolli e applicazioni decentralizzate, soffermandosi sul funzionamento di operazioni di scambio e deposito di cripto valute.
 Infine, verrà analizzato Orbit, protocollo di gestione di strategie di automatizzazione di liquidità, sviluppato insieme all'azienda nella quale ho svolto il mio Project Work. Di quest'ultimo saranno mostrate le funzionalità, le tecnologie utilizzate nello sviluppo e l'architettura scelta.
 \end{abstract}
+\vspace{\fill}
 \tableofcontents
 
 
@@ -767,11 +772,11 @@ La dApp di Orbit è stata costruita dando priorità elevata alla sicurezza dei p
 
 Questa tesi ha affrontato tematiche del settore della finanza decentralizzata, mettendo in evidenza il ruolo della blockchain e sottolineando le differenze tra \textit{DeFi} e finanza tradizionale.\\\\È stata dedicata una particolare attenzione ad \textit{Orbit}, un prodotto sviluppato insieme al team di \textit{Five Elements Labs} durante il mio \textit{Project Work}, sul quale verte l'intera ricerca da me effettuata. Sono stati illustrati alcuni concetti cardini della DeFi, spiegando il funzionamento di un mercato regolarizzato da programmi distribuiti sulla blockchain e analizzando il protocollo Uniswap, del quale sono state evidenziate caratteristiche, meccaniche e complicazioni.
 \\Infine, vi è stata una spiegazione sulle funzionalità di Orbit, su quali vantaggi porterebbe agli utenti finali e soffermandosi in particolar modo su tecnologie utilizzate e architettura del prodotto.
-\\Le mie ricerche mi hanno portato a concludere che il settore è ancora estremamente giovane: non è semplice trovare materiali che spieghino in modo efficace i prodotti DeFi, motivo per il quale è estremamente importante continuare a svolgere ricerche di questo e condividerle per migliorare il settore.
+\\Le mie ricerche mi hanno portato a concludere che il settore ha un enorme potenziale ma è ancora estremamente giovane: non è semplice trovare materiali che spieghino in modo efficace la DeFi e i suoi prodotti, motivo per il quale è estremamente importante continuare a svolgere ricerche di questo tipo e condividerle, mettendole a disposizione di tutti per aiutare il settore a crescere e migliorarsi.
 
 \section{Prospettive future}
 \\Lavorare a questi tesi è stata un'esperienza che mi ha fornito una maggior consapevolezza del lavoro che svolgo: non è stata una ricerca fine a se stessa, bensì una magnifica conclusione di un percorso che mi ha arricchito personalmente e professionalmente, spronandomi ad essere ancora più curioso e a voler dare un concreto aiuto nella costruzione di questo settore.
-\\\\Il mio \textit{Project Work} è stata un'occasione unica per entrare nel vivo di questo mondo, e ora che si è concluso da qualche mese, ho intenzione di continuare a lavorare nel settore Web3, con l'obiettivo di crescere come professionista e poter dare il mio contributo nello sviluppo delle nuove tecnologie.
+\\\\Il mio \textit{Project Work} è stata un'occasione unica per entrare nel vivo di questo mondo: mi ha dato la possibilità di conoscere tantissime persone appassionate del Web3, imparare nuove tecnologie, linguaggi e diversi prodotti unici e rivoluzionari. Ora che si è concluso da qualche mese, ho intenzione di continuare a lavorare nel settore Web3, con l'obiettivo di crescere come professionista e poter dare il mio contributo nello sviluppo delle nuove tecnologie.
 
 
 \nocite{mastering_ethereum}
